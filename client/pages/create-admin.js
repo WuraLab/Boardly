@@ -51,8 +51,9 @@ const Createadmin = () => {
             <Input type="password" placeholder="password" size="sm" />
             <FormLabel mt={5}>Confirm Password</FormLabel>
             <Input type="password" placeholder="confirm password" size="sm" />
+            <br />
             <Center>
-            <Button mt={4} color="white" background= "#22AD80" type="submit" size="md">
+            <Button width="350px" mt={4} color="white" background= "#22AD80" type="submit" size="md">
               Create Admin Account
             </Button>
             </Center>
