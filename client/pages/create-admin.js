@@ -57,14 +57,16 @@ const Createadmin = () => {
             </Button>
             </Center>
           </FormControl>
+          <Center>
           <Link href="/">
             <a href= "/login" >Have an Account ? <span>Login</span></a>
           </Link>
+          </Center>
            </Box>
         </Flex>
 
         <Box bg="white">
-          <div>
+          <div className="slanted"> 
           <Center>
                 <Image src="/admin-image.png" mt={40}/>
             </Center>
