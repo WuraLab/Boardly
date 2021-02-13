@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Text, Grid, Image, Stack } from "@chakra-ui/react";
 import Sidebar from "../components/sidebar";
 import Navbar from "../components/navbar";
+import TemplateArea from "../components/templateArea";
 
 const Dashboard = () => {
   return (
@@ -20,7 +21,9 @@ const Dashboard = () => {
         <Box sx={{ gridArea: "navbar" }}>
           <Navbar />
         </Box>
-        <Box sx={{ gridArea: "body" }}> body</Box>
+        <Box sx={{ gridArea: "body" }}>
+          <TemplateArea />
+        </Box>
       </Grid>
     </Box>
   );
