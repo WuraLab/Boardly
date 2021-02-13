@@ -1,5 +1,6 @@
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 import React from "react";
+import EmployeeCards from "./employeeCards";
 
 let cards = [
   {
@@ -21,23 +22,29 @@ let cards = [
 ];
 export default function TemplateArea() {
   return (
-    <Grid px={5} templateColumns="repeat(4, 1fr)" gap={6}>
-      {cards.map((card, i) => (
-        <Flex
-          key={`card${i}`}
-          justify="center"
-          align="center"
-          bg="#FFFFFF"
-          height={150}
-          direction="column"
-          sx={{ borderRadius: "8px", border: "1px solid #DFE0EB" }}
-        >
-          <Text fontSize="19px" color="#9FA2B4">
-            {card.title}
-          </Text>
-          <Text fontSize="40px">{card.text}</Text>
-        </Flex>
-      ))}
-    </Grid>
+    <Box px={5}>
+      <Grid templateColumns="repeat(4, 1fr)" gap={6}>
+        {cards.map((card, i) => (
+          <Flex
+            key={`card${i}`}
+            justify="center"
+            align="center"
+            bg="#FFFFFF"
+            height={150}
+            direction="column"
+            sx={{ borderRadius: "8px", border: "1px solid #DFE0EB" }}
+          >
+            <Text fontSize="19px" color="#9FA2B4">
+              {card.title}
+            </Text>
+            <Text fontSize="40px">{card.text}</Text>
+          </Flex>
+        ))}
+      </Grid>
+
+      <Box mt={8}>
+        <EmployeeCards />
+      </Box>
+    </Box>
   );
 }
