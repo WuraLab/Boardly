@@ -14,11 +14,13 @@ import {
   extendTheme
 } from "@chakra-ui/react";
 
+import Link from 'next/link'
+
 const theme = extendTheme({
   textStyles: {
     h1: {
       fontSize: ["48px", "72px"],
-      fontWeight: "light",
+      fontWeight: "Bold",
       lineHeight: "110%",
       letterSpacing: "-2%",
       fontFamily: "poppins"
@@ -38,8 +40,8 @@ const Createadmin = () => {
       >
         <Flex bg="white" pt={12} px={6} w={592} align="center" justify="center">
            <Box>
-           <Text  textStyle="h1" fontSize="4xl">Create Admin Account</Text>
-            <Text fontSize="md">Fill out the following information to create an admin account</Text>
+           <Text  textStyle="h1" color="#000000" fontFamily="poppins" fontSize="4xl">Create Admin Account</Text>
+            <Text fontSize="md" color="#867979">Fill out the following information to create an admin account</Text>
           <FormControl id="email">
             <FormLabel mt={5}>Company's Name</FormLabel>
             <Input type="text" placeholder="wuralab" size="sm" />
@@ -49,18 +51,25 @@ const Createadmin = () => {
             <Input type="password" placeholder="password" size="sm" />
             <FormLabel mt={5}>Confirm Password</FormLabel>
             <Input type="password" placeholder="confirm password" size="sm" />
+            <Center>
             <Button mt={4} color="white" background= "#22AD80" type="submit" size="md">
-              Submit
+              Create Admin Account
             </Button>
+            </Center>
           </FormControl>
+          <Link href="/">
+            <a href= "/login" >Have an Account ? <span>Login</span></a>
+          </Link>
            </Box>
         </Flex>
 
-        <Box bg="#7742F6">
-
-            <Center>
+        <Box bg="white">
+          <div>
+          <Center>
                 <Image src="/admin-image.png" mt={40}/>
             </Center>
+          </div>
+           
         </Box>
       </Grid>
     </Box>
