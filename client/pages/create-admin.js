@@ -16,6 +16,7 @@ import {
 
 import Link from 'next/link'
 
+
 const theme = extendTheme({
   textStyles: {
     h1: {
@@ -54,7 +55,10 @@ const Createadmin = () => {
             <br />
             <Center>
             <Button width="350px" mt={4} color="white" background= "#22AD80" type="submit" size="md">
-              Create Admin Account
+            <Link href="/dashboard">
+                <a>Create Admin Account</a>
+            </Link>
+              
             </Button>
             </Center>
           </FormControl>
