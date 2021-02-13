@@ -58,7 +58,6 @@ const Createadmin = () => {
             <Link href="/dashboard">
                 <a>Create Admin Account</a>
             </Link>
-              
             </Button>
             </Center>
           </FormControl>
