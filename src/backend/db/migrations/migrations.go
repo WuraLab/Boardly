@@ -10,11 +10,21 @@ import (
 
 func Migrate(db *gorm.DB) error {
 	m := gormigrate.New(db, gormigrate.DefaultOptions, []*gormigrate.Migration{
-		// create persons table
+		// User table
 		{
 			ID: time.Now().UTC().String(),
 			Migrate: func(tx *gorm.DB) error {
 				return tx.AutoMigrate(&models.User{})
+			},
+			Rollback: func(tx *gorm.DB) error {
+				return tx.Migrator().DropTable("user")
+			},
+		},
+		// Role table
+		{
+			ID: time.Now().UTC().String(),
+			Migrate: func(tx *gorm.DB) error {
+				return tx.AutoMigrate(&models.Role{})
 			},
 			Rollback: func(tx *gorm.DB) error {
 				return tx.Migrator().DropTable("user")

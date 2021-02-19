@@ -7,4 +7,3 @@ type User struct {
 	CreatedAt int64 `gorm:"autoUpdateTime:nano"`
 	UpdatedAt int64 `gorm:"autoUpdateTime:nano"`
 }
-
