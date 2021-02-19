@@ -10,3 +10,22 @@ mergeable:
       - do: label
         must_exclude:
           regex: 'WIP'
+          
+      - do: description
+        no_empty:
+          enabled: true
+          message: Description should not be empty. Provide detail with **what** was changed, **why** it was changed, and **how** it was changed.
+
+  - when: issues.opened
+    validate:
+      - do: description
+        no_empty:
+          enabled: true
+          message: Description should not be empty. Provide detail with **what** the issue is about.
+    fail:
+      - do: comment
+        payload:
+          body: >
+            The following problem was found with this issue:
+              - It has empty description.
+
