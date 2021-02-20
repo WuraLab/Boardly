@@ -8,6 +8,7 @@ import (
 	"gorm.io/gorm"
 )
 
+//Migrate To create models schema in DB
 func Migrate(db *gorm.DB) error {
 	m := gormigrate.New(db, gormigrate.DefaultOptions, []*gormigrate.Migration{
 		// User table
