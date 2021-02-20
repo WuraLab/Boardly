@@ -34,7 +34,7 @@ func main() {
 	if os.Getenv("ENV") != "" {
 		env = os.Getenv("ENV")
 	}
-	envFile := "../../.env." + env + ".local"
+	envFile := ".env." + env + ".local"
 	if godotenv.Load(envFile) != nil {
 		log.Fatalf("Error Loading env file %s", envFile)
 	}
@@ -59,4 +59,6 @@ func main() {
 		}
 		return
 	}
+
+	//star
 }
