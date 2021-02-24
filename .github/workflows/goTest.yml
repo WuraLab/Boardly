@@ -40,7 +40,6 @@ jobs:
       run: go test ./...
       env:
           GOARCH: ${{ matrix.goarch }}
-          GOPROXY: off
 
   lint:
     name: lint
