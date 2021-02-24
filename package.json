@@ -1,6 +1,7 @@
 {
   "name": "boardly",
   "version": "0.1.0",
+  "main": "src/web/pages",
   "private": true,
   "scripts": {
     "dev": "next dev",
