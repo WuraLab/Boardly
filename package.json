@@ -4,9 +4,19 @@
   "main": "src/web/pages",
   "private": true,
   "scripts": {
+<<<<<<< HEAD
     "dev": "cd src/web && next dev",
     "build": "cd src/web && next build",
     "start": "cd src/web && next start"
+||||||| dbf5f55
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+=======
+    "dev": "cd src/web && next dev",
+    "build": "next build",
+    "start": "next start"
+>>>>>>> 5206a0afe76a3c5ee7a4cae11f86ee92d8639aeb
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
