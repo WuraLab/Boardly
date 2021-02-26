@@ -1,13 +1,16 @@
 {
   "name": "boardly",
   "version": "0.1.0",
+  "main": "src/web/pages",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "next dev src/web",
+    "build": "next build src/web",
+    "start": "next start src/web"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.2",
     "date-fns": "^2.11.1",
     "gray-matter": "^4.0.2",
     "next": "^10.0.0",
