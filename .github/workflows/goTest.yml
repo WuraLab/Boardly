@@ -1,0 +1,42 @@
+name: Test
+
+on: 
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        go-version:
+          - 1.15
+        os: 
+          - ubuntu 
+        goarch:
+          - amd64
+    name: test (${{ matrix.os }}/go-${{ matrix.go-version }}/${{ matrix.goarch }})
+    runs-on: ${{ matrix.os }}-latest
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v2.1.3
+      with:
+        stable: false
+        go-version: ${{ matrix.go-version }}
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Test and Coverage
+      run: go test ./... -race -coverprofile=coverage.txt -covermode=atomic
+      env:
+          GOARCH: ${{ matrix.goarch }}
+    - name: Upload coverage to Codecov
+      run: bash <(curl -s https://codecov.io/bash)
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      - uses: golangci/golangci-lint-action@v2.5.1
