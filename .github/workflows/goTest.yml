@@ -11,17 +11,10 @@ jobs:
       matrix:
         go-version:
           - 1.15
-          - 1.16
         os: 
-          - macos
           - ubuntu 
-          - windows
         goarch:
-          - 386
           - amd64
-        exclude:
-          - os: macos
-            goarch: 386
     name: test (${{ matrix.os }}/go-${{ matrix.go-version }}/${{ matrix.goarch }})
     runs-on: ${{ matrix.os }}-latest
     steps:
@@ -33,10 +26,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Test
-      run: go test ./...
+    - name: Test and Coverage
+      run: go test ./... -race -coverprofile=coverage.txt -covermode=atomic
       env:
           GOARCH: ${{ matrix.goarch }}
+    - name: Upload coverage to Codecov
+      run: bash <(curl -s https://codecov.io/bash)
 
   lint:
     name: lint
