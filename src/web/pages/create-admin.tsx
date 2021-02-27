@@ -1,11 +1,8 @@
 import Box from "@material-ui/core/Box";
-import Grid, { GridSpacing } from "@material-ui/core/Grid";
+import Grid from "@material-ui/core/Grid";
 import { Container, FormControl, Button, Typography } from "@material-ui/core";
-import { InputLabel } from "@material-ui/core";
-import { Input } from "@material-ui/core"
-import { TextField, TextFieldProps } from "@material-ui/core"
-import { FormHelperText, OutlinedInput } from "@material-ui/core"
-import "@fontsource/poppins"
+import { TextField } from "@material-ui/core";
+import "@fontsource/poppins";
 
 const CreateAdmin = () => {
     return (
@@ -61,7 +58,7 @@ const CreateAdmin = () => {
                 </Grid>
             </Grid>
         </Box >
-    )
-}
+    );
+};
 
-export default CreateAdmin
+export default CreateAdmin;
