@@ -1,7 +1,0 @@
-
-.slanted {
-    background-color: #753FF6;
-    height: 800px;
-    -webkit-clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
-    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
-}
