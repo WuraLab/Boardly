@@ -1,9 +1,9 @@
-import Box from '@material-ui/core/Box';
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
-import { Container, FormControl, Button, Typography } from '@material-ui/core';
-import { InputLabel } from '@material-ui/core';
-import { Input } from '@material-ui/core'
-import { TextField, TextFieldProps } from '@material-ui/core'
+import Box from "@material-ui/core/Box";
+import Grid, { GridSpacing } from "@material-ui/core/Grid";
+import { Container, FormControl, Button, Typography } from "@material-ui/core";
+import { InputLabel } from "@material-ui/core";
+import { Input } from "@material-ui/core"
+import { TextField, TextFieldProps } from "@material-ui/core"
 import { FormHelperText, OutlinedInput } from "@material-ui/core"
 import "@fontsource/poppins"
 
@@ -15,7 +15,7 @@ const CreateAdmin = () => {
                     {/* <Box>
                         <img src="/admin-signup.png" width="50" height="50" />
                     </Box> */}
-                    <Container style={{ height: "100vh", backgroundColor: "white", display: 'flex', alignItems: 'center' }} >
+                    <Container style={{ height: "100vh", backgroundColor: "white", display: "flex", alignItems: "center" }} >
 
                         <Grid item container direction="column" alignItems="center">
                             <Typography style={{ color: "#000000", fontWeight:"bold", fontSize: "30px", letterSpacing: "4px"}}>
@@ -36,7 +36,7 @@ const CreateAdmin = () => {
                             </FormControl>
                             <br /> <br />
 
-                            <Button variant="contained" style={{ backgroundColor: "#22AD80", color: "#FFFFFF", width: "50vh" }} >
+                            <Button variant="contained" style={{ backgroundColor: "#22ad80", color: "#ffffff", width: "50vh" }} >
                                 Create Account
                             </Button>
                             <Typography color="primary">
@@ -48,11 +48,11 @@ const CreateAdmin = () => {
                 </Grid>
                 <Grid item xs={6}>
                     <Box>
-                        <Container style={{ height: "100vh", backgroundColor: "#753FF6", clipPath: "polygon(8% 0, 100% 0, 100% 100%, 0% 100%)" }}>
+                        <Container style={{ height: "100vh", backgroundColor: "#753ff6", clipPath: "polygon(8% 0, 100% 0, 100% 100%, 0% 100%)" }}>
                             <div style={{
                                 margin: "0 50px 0 50px",
-                                position: 'absolute', left: '50%', top: '50%',
-                                transform: 'translate(10%, -50%)'
+                                position: "absolute", left: "50%", top: "50%",
+                                transform: "translate(10%, -50%)"
                             }}>
                                 <img src="/admin-signup.png" />
                             </div>
