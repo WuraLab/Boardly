@@ -14,7 +14,7 @@ func LoadENV() error {
 		env = os.Getenv("ENV")
 	}
 	envFile := ".env." + env + ".local"
-	if err := godotenv.Load(envFile); err != nil {
+	if err := godotenv.Load("/Users/tundeoladipupo/opensource/work/go/Boardly/" + envFile); err != nil {
 		log.Fatalf("Error Loading env file %s", envFile)
 		return err
 	}

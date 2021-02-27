@@ -3,17 +3,18 @@ package helper
 import (
 	"database/sql"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/ory/dockertest/v3"
 	"github.com/ory/dockertest/v3/docker"
+	log "github.com/sirupsen/logrus"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 func StartDBContainer(tag string) (*dockertest.Pool, *dockertest.Resource, error) {
 	// uses a sensible default on windows (tcp/http) and linux/osx (socket)
+	log.Println("Starting Container")
 	pool, err := dockertest.NewPool("")
 	if err != nil {
 		log.Fatalf("Could not connect to docker: %s", err)
@@ -72,6 +73,7 @@ func StartDBContainer(tag string) (*dockertest.Pool, *dockertest.Resource, error
 }
 
 func PurgeDBContainer(pool *dockertest.Pool, resource *dockertest.Resource) error {
+	log.Println("shutting down container")
 	if err := pool.Purge(resource); err != nil {
 		log.Fatalf("Could not purge resource: %s", err)
 		return err

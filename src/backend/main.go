@@ -6,7 +6,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/joho/godotenv"
+	"github.com/wuraLab/boardly/src/backend/helper"
+
 	log "github.com/sirupsen/logrus"
 	"github.com/wuraLab/boardly/src/backend/db/migrations"
 	"gorm.io/driver/postgres"
@@ -30,14 +31,12 @@ func main() {
 	flag.Parse()
 
 	//check the environment else set default
-	env := "dev"
-	if os.Getenv("ENV") != "" {
-		env = os.Getenv("ENV")
-	}
-	envFile := ".env." + env + ".local"
-	if godotenv.Load(envFile) != nil {
-		log.Fatalf("Error Loading env file %s", envFile)
-	}
+	helper.LoadENV()
+	//start container db
+	// pool, resource, err := helper.StartDBContainer("11")
+	// defer helper.PurgeDBContainer(pool, resource)
+
+	migrations.HelloMigrate()
 
 	//create db connection
 	timezone, _ := time.Now().Zone()
@@ -59,6 +58,4 @@ func main() {
 		}
 		return
 	}
-
-	//star
 }
