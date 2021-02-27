@@ -12,7 +12,7 @@ const CreateAdmin = () => {
                     {/* <Box>
                         <img src="/admin-signup.png" width="50" height="50" />
                     </Box> */}
-                    <Container style={{ height: "100vh", backgroundColor: "white", display: "flex", alignItems: "center" }} >
+                    <Container style={{ height: "100vh", backgroundColor: "white", display: "flex", alignItems: "center", margin: "50px 0 0 0" }} >
 
                         <Grid item container direction="column" alignItems="center">
                             <Typography style={{ color: "#000000", fontWeight:"bold", fontSize: "30px", letterSpacing: "4px"}}>
