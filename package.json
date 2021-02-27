@@ -1,15 +1,17 @@
 {
   "name": "boardly",
   "version": "0.1.0",
+  "main": "src/web/pages",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "next dev src/web",
+    "build": "next build src/web",
+    "start": "next start src/web"
   },
   "dependencies": {
     "date-fns": "^2.11.1",
     "gray-matter": "^4.0.2",
+    "material-ui-image": "^3.3.1",
     "next": "^10.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
