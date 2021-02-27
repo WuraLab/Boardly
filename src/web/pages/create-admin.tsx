@@ -1,10 +1,11 @@
 import Box from '@material-ui/core/Box';
 import Grid, { GridSpacing } from '@material-ui/core/Grid';
-import { Container, FormControl, Button } from '@material-ui/core';
+import { Container, FormControl, Button, Typography } from '@material-ui/core';
 import { InputLabel } from '@material-ui/core';
 import { Input } from '@material-ui/core'
 import { TextField, TextFieldProps } from '@material-ui/core'
-import { FormHelperText } from "@material-ui/core"
+import { FormHelperText, OutlinedInput } from "@material-ui/core"
+import "@fontsource/poppins"
 
 const CreateAdmin = () => {
     return (
@@ -13,26 +14,32 @@ const CreateAdmin = () => {
                 <Grid item xs={6} >
                     <Container style={{ height: "100vh", backgroundColor: "white", display: 'flex', alignItems: 'center' }} >
                         <Grid item container direction="column" alignItems="center">
-                            <div>
-                                <h1 style={{ fontFamily: "" }}> Signup to Boardly </h1>
-                            </div>
+                            <Typography style={{ color: "#000000", fontWeight:"bold", fontSize: "30px", letterSpacing: "4px"}}>
+                                Create Admin Account
+                            </Typography>
+                            <Typography style={{ color: "#867979"}}>Fill out  the folowing information  to create an admin account</Typography>
+                            <br />
                             <FormControl>
-                                <TextField variant="outlined" label="Company's name" style={{ width: "50vh", }} />
+                                <TextField variant="outlined" label="Company's name" style={{ width: "60vh", }} />
+                                <FormHelperText> Company's email</FormHelperText>
                             </FormControl>
                             <br />
                             <FormControl>
-                                <TextField variant="outlined" label="Company's Email" style={{ width: "50vh", }} />
+                                <TextField variant="outlined" label="Company's Email" style={{ width: "60vh", }} />
                             </FormControl>
                             <br />
                             <FormControl>
-                                <TextField variant="outlined" label="Password" style={{ width: "50vh", }} />
+                                <TextField variant="outlined" label="Password" style={{ width: "60vh", }} />
                             </FormControl>
                             <br /> <br />
 
 
-                            <Button variant="contained" size="large" style={{ backgroundColor: "#22AD80", color: "#FFFFFF" }} >
+                            <Button variant="contained" style={{ backgroundColor: "#22AD80", color: "#FFFFFF", width: "60vh" }} >
                                 Create Account
                             </Button>
+                            <Typography color="primary">
+                               <a href="/login"> Have an account?  <span> Login </span>  </a>
+                            </Typography>
                         </Grid>
 
                     </Container>
