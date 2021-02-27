@@ -11,8 +11,12 @@ const CreateAdmin = () => {
     return (
         <Box padding={0} margin={0}>
             <Grid container spacing={0}>
-                <Grid item xs={6} >
+                <Grid item xs={6}>
+                    {/* <Box>
+                        <img src="/admin-signup.png" width="50" height="50" />
+                    </Box> */}
                     <Container style={{ height: "100vh", backgroundColor: "white", display: 'flex', alignItems: 'center' }} >
+
                         <Grid item container direction="column" alignItems="center">
                             <Typography style={{ color: "#000000", fontWeight:"bold", fontSize: "30px", letterSpacing: "4px"}}>
                                 Create Admin Account
@@ -21,7 +25,6 @@ const CreateAdmin = () => {
                             <br />
                             <FormControl>
                                 <TextField variant="outlined" label="Company's name" style={{ width: "60vh", }} />
-                                <FormHelperText> Company's email</FormHelperText>
                             </FormControl>
                             <br />
                             <FormControl>
@@ -33,8 +36,7 @@ const CreateAdmin = () => {
                             </FormControl>
                             <br /> <br />
 
-
-                            <Button variant="contained" style={{ backgroundColor: "#22AD80", color: "#FFFFFF", width: "60vh" }} >
+                            <Button variant="contained" style={{ backgroundColor: "#22AD80", color: "#FFFFFF", width: "50vh" }} >
                                 Create Account
                             </Button>
                             <Typography color="primary">
