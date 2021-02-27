@@ -3,17 +3,16 @@ import Grid, { GridSpacing } from '@material-ui/core/Grid';
 import { Container, FormControl, Button } from '@material-ui/core';
 import { InputLabel } from '@material-ui/core';
 import { Input } from '@material-ui/core'
-import { TextField } from '@material-ui/core'
+import { TextField, TextFieldProps } from '@material-ui/core'
 import { FormHelperText } from "@material-ui/core"
-
 
 const CreateAdmin = () => {
     return (
         <Box padding={0} margin={0}>
             <Grid container spacing={0}>
                 <Grid item xs={6} >
-                    <Container style={{ height: "100vh", backgroundColor: "white" }}>
-                        <Grid item container direction="column" alignItems="center" style={{ height: "100vh", }}>
+                    <Container style={{ height: "100vh", backgroundColor: "white", display: 'flex', alignItems: 'center' }} >
+                        <Grid item container direction="column" alignItems="center">
                             <div>
                                 <h1 style={{ fontFamily: "" }}> Signup to Boardly </h1>
                             </div>
@@ -29,7 +28,9 @@ const CreateAdmin = () => {
                                 <TextField variant="outlined" label="Password" style={{ width: "50vh", }} />
                             </FormControl>
                             <br /> <br />
-                            <Button variant="contained" size="large" style={{ backgroundColor: "#22AD80", color: "#FFFFFF"}} >
+
+
+                            <Button variant="contained" size="large" style={{ backgroundColor: "#22AD80", color: "#FFFFFF" }} >
                                 Create Account
                             </Button>
                         </Grid>
@@ -51,9 +52,6 @@ const CreateAdmin = () => {
                 </Grid>
             </Grid>
         </Box >
-
-
-
     )
 }
 
