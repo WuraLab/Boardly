@@ -1,10 +1,10 @@
-package migrations
+package db
 
 import (
 	"time"
 
 	"github.com/go-gormigrate/gormigrate/v2"
-	"github.com/wuraLab/boardly/src/backend/db/models"
+	"github.com/wuraLab/boardly/src/backend/internal/models"
 	"gorm.io/gorm"
 )
 
@@ -28,7 +28,7 @@ func Migrate(db *gorm.DB) error {
 				return tx.AutoMigrate(&models.Role{})
 			},
 			Rollback: func(tx *gorm.DB) error {
-				return tx.Migrator().DropTable("user")
+				return tx.Migrator().DropTable("role")
 			},
 		},
 	})

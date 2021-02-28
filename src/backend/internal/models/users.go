@@ -1,6 +1,7 @@
 package models
 
 import (
+	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
 
@@ -15,13 +16,16 @@ type User struct {
 
 //Create This create the user struct
 func (u *User) Create(db *gorm.DB) (int, error) {
-	db.AutoMigrate(&User{})
+	if err := db.AutoMigrate(&User{}); err != nil {
+        log.Fatal("I could not create User schema")
+	}
+
 	result := db.Create(&u)
 	return int(result.RowsAffected), result.Error
 }
 
-//Updatename  updates user's name
-func (u *User) Updatename(db *gorm.DB, newName string) error {
+//UpdateName  updates user's name
+func (u *User) UpdateName(db *gorm.DB, newName string) error {
 	result := db.Model(&u).Update("name", newName)
 	return result.Error
 }
