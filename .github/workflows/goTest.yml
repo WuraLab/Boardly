@@ -25,9 +25,12 @@ jobs:
         go-version: ${{ matrix.go-version }}
     - name: Checkout code
       uses: actions/checkout@v2
-
+    - name: Build the docker-compose stack
+      run: docker-compose -f docker-compose.yml -d
+    - name: Check running containers
+      run: docker ps -a
     - name: Test and Coverage
-      run: go test ./... -race -coverprofile=coverage.txt -covermode=atomic
+      run: TEST_DIR=$(pwd) go test ./... -race -coverprofile=coverage.txt -covermode=atomic
       env:
           GOARCH: ${{ matrix.goarch }}
     - name: Upload coverage to Codecov
