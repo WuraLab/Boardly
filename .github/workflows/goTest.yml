@@ -26,7 +26,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Build the docker-compose stack
-      run: docker-compose up -d
+      run: docker-compose --env-file .test.env up
     - name: Check running containers
       run: docker ps -a
     - name: Test and Coverage
