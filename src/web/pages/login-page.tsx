@@ -18,7 +18,7 @@ const Login = () => {
               <Grid container style={{ backgroundColor: "#EEEAEA" }} spacing={0}>
                   <Grid item xs={6}>
             
-                  <Container style={{ height: "100vh", backgroundColor: "#EEEAEA" }}>
+                  <Container style={{ height: "100vh", backgroundColor: "#EEEAEA",   margin: "150px 0px 0px 50px",}}>
                       <Typography component="h1" variant="h4" style={{fontFamily: "poppins", fontSize: 40, fontWeight: "bold"}}>
             Sign in to Boardly
           </Typography>
@@ -27,7 +27,7 @@ const Login = () => {
               variant="outlined"
               margin="normal"
               required
-              fullWidth
+              style={{ width: "60vh", }} 
               id="email"
               label="Company's Email"
               name="email"
@@ -38,7 +38,7 @@ const Login = () => {
               variant="outlined"
               margin="normal"
               required
-              fullWidth
+              style={{ width: "60vh", }} 
               name="password"
               label="Password"
               type="password"
@@ -46,31 +46,28 @@ const Login = () => {
               autoComplete="current-password"
             />
 
-                          <Grid container>
-<Grid item xs>
-  <Link href="#" variant="body2" style={{color:"#577B70"}}>
-    Forgot password?
-  </Link>
-</Grid>
-</Grid>
-                          <Button style ={{color: "white",  fontFamily: "poppins", backgroundColor: "#22AD80"}}
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-             
-            >
-              Sign In
-            </Button>
+                        
+<Typography>
+  <a href="#"> Forgot password?</a>
+   
+    </Typography>
+    <br /> <br />
+  
 
-            <Grid container>
-<Grid item > New here?  
-   <Link href="#" variant="body2" style={{color:"#577B70"}}> 
-       Create an account
-  </Link>
-</Grid>
-</Grid>
-                      </Container>
+                          <Button variant="contained" style ={{backgroundColor: "#22ad80", color: "#ffffff", width: "60vh"}}
+              type="submit">
+              Sign In
+            </Button> 
+
+
+
+            
+<Typography> New here? 
+ <a href="/create-admin">  Create an account </a>
+  </Typography>
+
+</Container>
+                     
                   </Grid>
                   <Grid item xs={6}>
                       <Box>
