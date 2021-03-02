@@ -1,13 +1,10 @@
-package db_test
+package models_test
 
 import (
 	"fmt"
 	"log"
-	"testing"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/wuraLab/boardly/src/backend/internal/config"
-	"github.com/wuraLab/boardly/src/backend/internal/db"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -26,8 +23,4 @@ func init() {
 	if DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{}); err != nil {
 		log.Fatalln(err)
 	}
-}
-
-func TestMigrate(t *testing.T) {
-	assert.NoError(t, db.Migrate(DB), "Migration was not successful")
 }
