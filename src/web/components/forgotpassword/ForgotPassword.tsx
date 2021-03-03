@@ -1,13 +1,10 @@
+import React from 'react';
 
-import React from "react"
-
+// type Props = {};
 export const ForgotPassword: React.FC = () => {
-        return (
-            <>
-                <td>Hello</td>
-                <td>World</td>
-            </>
-        )
-
-
+    return (
+        <>
+            <p>Password Recovery component</p>
+        </>
+    );
 };
