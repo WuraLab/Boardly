@@ -30,3 +30,11 @@ ERROR: 2021/02/27 18:51:01 main.go:50: Something went wrong
 INFO: 2021/02/27 18:51:01 main.go:54: connecting to database
 INFO: 2021/02/27 18:51:01 main.go:66: connected to database
 INFO: 2021/02/27 18:51:01 main.go:72: serving application
+2021/02/27 19:08:01 Hello Logger!
+INFO: 2021/02/27 19:08:01 main.go:47: Starting the application...
+INFO: 2021/02/27 19:08:01 main.go:48: Something noteworthy happened
+WARNING: 2021/02/27 19:08:01 main.go:49: There is something you should know about
+ERROR: 2021/02/27 19:08:01 main.go:50: Something went wrong
+INFO: 2021/02/27 19:08:01 main.go:54: connecting to database
+INFO: 2021/02/27 19:08:01 main.go:66: connected to database
+INFO: 2021/02/27 19:08:01 main.go:72: serving application

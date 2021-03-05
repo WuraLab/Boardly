@@ -57,7 +57,7 @@ func main() {
 	config.DB, err = gorm.Open("postgres", "user=postgres password=roborealm1 dbname=gincrud1 sslmode=disable")
 
 	// Migrate the schema
-	config.DB.AutoMigrate(&models.Material{})
+	config.DB.AutoMigrate(&models.User{})
 
 	if err != nil {
 		ErrorLogger.Println("Status:", err)
