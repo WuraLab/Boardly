@@ -77,3 +77,9 @@ func (u *User) Save(db *gorm.DB) error {
 func (u *User) Delete(db *gorm.DB) error {
 	return db.Delete(&u).Error
 }
+
+//GetUser
+func (u *User) GetUser(db *gorm.DB) error {
+
+	// return db.Delete(&u).Error
+}
