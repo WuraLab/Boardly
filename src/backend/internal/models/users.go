@@ -2,6 +2,7 @@ package models
 
 import (
 	log "github.com/sirupsen/logrus"
+	"github.com/wuraLab/boardly/src/backend/internal/db"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
@@ -14,6 +15,9 @@ type User struct {
 	Email     string `gorm:"column:email;type:varchar(255);not null" binding:"email"`
 	Password  string `gorm:"column:password;not null" json:"-"`
 }
+
+//UserModel ...
+type UserModel struct{}
 
 //Create This create the user struct
 func (u *User) Create(db *gorm.DB) (int, error) {
@@ -76,4 +80,24 @@ func (u *User) Save(db *gorm.DB) error {
 //Delete  delete user operation
 func (u *User) Delete(db *gorm.DB) error {
 	return db.Delete(&u).Error
+}
+
+//RegisterAdmin ... Create an admin user
+func (m UserModel) RegisterAdmin(user *User) (err error) {
+	db := db.GetDB()
+	// hash password using bcrypt
+	bytePassword := []byte(user.Password)
+	hashedPassword, err := bcrypt.GenerateFromPassword(bytePassword, bcrypt.DefaultCost)
+	if err != nil {
+		panic(err) //Something really went wrong here...
+	}
+
+	// set password to the hashed password
+	user.Password = string(hashedPassword)
+
+	if err = db.Create(user).Error; err != nil {
+		return err
+	}
+
+	return nil
 }

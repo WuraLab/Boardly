@@ -5,8 +5,8 @@ services:
     image: postgres
     restart: always
     ports:
-      - 5432:5432
+      - 4432:4432
     environment:
-      POSTGRES_USER: "$DB_USER"
-      POSTGRES_PASSWORD: "$DB_PASSWORD"
-      POSTGRES_DB: "$DB_NAME"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "roborealm1"
+      POSTGRES_DB: "gincrud1"

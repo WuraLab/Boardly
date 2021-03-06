@@ -4,8 +4,13 @@ import (
 	"flag"
 	"os"
 
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	log "github.com/sirupsen/logrus"
 	"github.com/wuraLab/boardly/src/backend/internal/config"
+	"github.com/wuraLab/boardly/src/backend/internal/db"
+	"github.com/wuraLab/boardly/src/backend/internal/models"
+	"github.com/wuraLab/boardly/src/backend/internal/routes"
+	_ "gorm.io/driver/postgres"
 )
 
 func init() {
@@ -26,5 +31,18 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	//Start PostgreSQL database
+	//Example: db.GetDB()
+	db.Init()
+
+	// Initialize the routes
+	r := routes.SetupRouter()
+
+	DB := db.GetDB()
+	DB.AutoMigrate(&models.User{})
+	// Start serving the application
+	log.Println("serving application")
+	r.Run()
 	log.Print(cfg)
 }
