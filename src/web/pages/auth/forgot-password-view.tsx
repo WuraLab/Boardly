@@ -7,9 +7,9 @@ import { Layout } from '../../components/layout/index';
 
 const ForgotPasswordView: React.FC = () => {
     return (
-        <Layout>
+        // <Layout>
             <ForgotPassword />
-        </Layout>
+        // </Layout>
     );
 };
 
