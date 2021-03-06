@@ -9,11 +9,12 @@
     "start": "next start src/web"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.2",
+    "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "date-fns": "^2.11.1",
     "gray-matter": "^4.0.2",
     "next": "^10.0.0",
+    "next-images": "^1.7.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "remark": "^12.0.0",
