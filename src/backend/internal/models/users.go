@@ -1,6 +1,8 @@
 package models
 
 import (
+	"errors"
+
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -17,13 +19,9 @@ type User struct {
 
 //Create This create the user struct
 func (u *User) Create(db *gorm.DB) (int, error) {
-	// if err := db.AutoMigrate(&User{}); err != nil {
-	// 	log.Error(err)
-	// 	return 0, err
-	// }
 	//check user already exist
-	if rows, err := u.userExists(db); rows > 0 {
-		return 1, err
+	if rows, _ := u.userExists(db); rows > 0 {
+		return rows, errors.New("user exists")
 	}
 	if err := u.hashPassword(); err != nil {
 		log.Error(err)
