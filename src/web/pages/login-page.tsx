@@ -5,12 +5,59 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { Input, InputLabel, FormLabel, TextField, Link } from "@material-ui/core";
+import InputBase from "@material-ui/core/InputBase";
 
+const BootstrapInput = withStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            "label + &": {
+                marginTop: theme.spacing(3),
+            },
+        },
+        input: {
+            borderRadius: 4,
+            position: "relative",
+            backgroundColor: "rgba(196, 196, 196, 0.2)",
+            border: "1px solid black",
+            fontSize: 16,
+            width: "55vh",
+            padding: "10px 12px",
+            transition: theme.transitions.create(["border-color", "box-shadow"]),
+            // Use the system font instead of the default Roboto font.
+            fontFamily: [
+                "-apple-system",
+                "BlinkMacSystemFont",
+            ].join(","),
+            "&:focus": {
+                boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+                borderColor: theme.palette.primary.main,
+            },
+        },
+    }),
+)(InputBase);
 
-
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        root: {
+            display: "flex",
+            flexWrap: "wrap",
+        },
+        margin: {
+            margin: theme.spacing(1),
+        },
+        input: {
+            fontWeight: "bold",
+            fontSize: "20px",
+            fontFamily: "poppins",
+            color: "black"
+        }
+    }),
+);
 
 
 const Login = () => {
+
+  const classes = useStyles();
 
   return (
     
