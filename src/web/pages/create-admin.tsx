@@ -75,10 +75,10 @@ const CreateAdmin = () => {
         <Box padding={0} margin={0}>
             <Grid container spacing={0}>
                 <Grid item xs={6}>
-                    {/* <Box>
-                        <img src="/admin-signup.png" width="50" height="50" />
-                    </Box> */}
-                    <Container style={{ height: "100vh", backgroundColor: "white", display: "flex", alignItems: "center", margin: "50px 0 0 0" }} >
+                    <Box style= {{ margin: "20px 0 20px 100px"}}>
+                        <img src="/logo.png" width="100" height="100" />
+                    </Box>
+                    <Container style={{ height: "100vh", backgroundColor: "white", display: "flex", margin: "50px 0 0 0" }} >
 
                         <Grid item container direction="column" alignItems="center">
                             <Typography style={{ color: "#000000", fontWeight: "bold", fontSize: "30px", letterSpacing: "4px" }}>
@@ -87,22 +87,22 @@ const CreateAdmin = () => {
                             <Typography style={{ color: "#867979" }}>Fill out  the folowing information  to create an admin account</Typography>
                             <br />
                             <FormControl className={classes.margin}>
-                                <InputLabel shrink htmlFor="bootstrap-input" className= {classes.input} >
+                                <InputLabel shrink htmlFor="bootstrap-input" className={classes.input} >
                                     Company's Name
                                 </InputLabel>
-                                <BootstrapInput id="bootstrap-input"  placeholder="Wuralab" />
+                                <BootstrapInput id="bootstrap-input" placeholder="Wuralab" />
                             </FormControl>
                             <FormControl className={classes.margin}>
-                                <InputLabel shrink htmlFor="bootstrap-input" className= {classes.input} >
+                                <InputLabel shrink htmlFor="bootstrap-input" className={classes.input} >
                                     Company's Email
                                 </InputLabel>
                                 <BootstrapInput id="bootstrap-input" placeholder="user@wuralab.com" />
                             </FormControl>
                             <FormControl className={classes.margin}>
-                                <InputLabel shrink htmlFor="bootstrap-input" className= {classes.input} >
+                                <InputLabel shrink htmlFor="bootstrap-input" className={classes.input} >
                                     Password
                                 </InputLabel>
-                                <BootstrapInput id="bootstrap-input"  placeholder="password"/>
+                                <BootstrapInput id="bootstrap-input" placeholder="password" />
                             </FormControl>
                             < br />
                             <Button variant="contained" style={{ backgroundColor: "#22ad80", color: "#ffffff", width: "50vh" }} >
