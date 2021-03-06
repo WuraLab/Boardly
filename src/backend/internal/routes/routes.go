@@ -37,10 +37,7 @@ func SetupRouter() *gin.Engine {
 			{
 				admin.POST("/register", controllers.RegisterAdmin)
 			}
-			// 	materials.POST("/", controllers.CreateMaterial)
-			// 	materials.GET("/:id", controllers.GetMaterialByID)
-			// 	materials.PUT("/:id", controllers.UpdateMaterial)
-			// 	materials.DELETE("/:id", controllers.DeleteMaterial)
+
 		}
 
 	}
