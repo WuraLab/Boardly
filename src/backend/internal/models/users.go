@@ -9,17 +9,21 @@ import (
 //User Struct to hold User entity. Update struct tag for binding
 type User struct {
 	Base
-	FirstName string `gorm:"column:firstname;type:varchar(255)"`
-	LastName  string `gorm:"column:lastname;type:varchar(255);not null"`
-	Email     string `gorm:"column:email;type:varchar(255);not null" binding:"email"`
-	Password  string `gorm:"column:password;not null" json:"-"`
+	FirstName string `gorm:"column:firstname;type:varchar(255)"  json:"firstname"`
+	LastName  string `gorm:"column:lastname;type:varchar(255);not null" json:"lastname"`
+	Email     string `gorm:"column:email;type:varchar(255);not null" json:"email"`
+	Password  string `gorm:"column:password;not null" json:"password"`
 }
 
 //Create This create the user struct
 func (u *User) Create(db *gorm.DB) (int, error) {
-	if err := db.AutoMigrate(&User{}); err != nil {
-		log.Error(err)
-		return 0, err
+	// if err := db.AutoMigrate(&User{}); err != nil {
+	// 	log.Error(err)
+	// 	return 0, err
+	// }
+	//check user already exist
+	if rows, err := u.userExists(db); rows > 0 {
+		return 1, err
 	}
 	if err := u.hashPassword(); err != nil {
 		log.Error(err)
@@ -79,7 +83,7 @@ func (u *User) Delete(db *gorm.DB) error {
 }
 
 //GetUser
-func (u *User) GetUser(db *gorm.DB) error {
-
-	// return db.Delete(&u).Error
+func (u *User) userExists(db *gorm.DB) (int, error) {
+	result := db.Where("email = ?", u.Email).First(u)
+	return int(result.RowsAffected), result.Error
 }
