@@ -18,7 +18,8 @@ const useStyles = makeStyles(() =>
         height: '100%',
         width: '100%',
         margin :"0px",
-        background: "E5E5E5"
+        background: "E5E5E5",
+        fontFamily: "Poppins"
       },
     //   '#root': {
     //     height: '100%',
