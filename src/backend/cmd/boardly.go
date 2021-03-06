@@ -2,17 +2,17 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"github.com/wuraLab/boardly/src/backend/internal/config"
-	"github.com/wuraLab/boardly/src/backend/internal/controllers"
+	"github.com/wuraLab/boardly/src/backend/internal/routes"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
+//  fo run ....... --migrate
 func init() {
 	// Log as JSON instead of the default ASCII formatter.
 	log.SetFormatter(&log.JSONFormatter{})
@@ -40,29 +40,18 @@ func main() {
 	}
 
 	//Start the default gin server
-	r := gin.Default()
-	api := r.Group("/api")
-	{
-		/*** START USER ***/
-		user := controllers.User{
-			Base: controllers.Base{
-				DB: DB,
-			},
-		}
+	// r := gin.Default()
+	// api := r.Group("/api/v1")
+	// {
+	// 	/*** START USER ***/
+	// 	user := controllers.User{
+	// 		Base: controllers.Base{
+	// 			DB: DB,
+	// 		},
+	// 	}
 
-		// v1.POST("/user/login", user.Login)
-		api.POST("/user/register", user.Register)
-		// v1.GET("/user/logout", user.Logout)
-	}
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusNotFound, gin.H{
-			"msg": "Welcome to Boardly",
-		})
-	})
-
-	r.NoRoute(func(c *gin.Context) {
-		c.JSON(http.StatusNotFound, gin.H{})
-	})
+	// route intialization
+	r := routes.SetupRouter()
 
 	log.Infoln(Config.Server.SSL)
 
