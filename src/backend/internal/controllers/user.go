@@ -33,15 +33,13 @@ func (ctrl *User) Register(c *gin.Context) {
 
 	rows, err := user.Create(ctrl.DB)
 
-	if err != nil && rows == 0 {
-		log.Error(err)
-		c.AbortWithStatusJSON(http.StatusNotAcceptable, gin.H{"message": err.Error()})
-		return
-	} else if err != nil && rows > 1 {
-		c.JSON(http.StatusNotAcceptable, gin.H{"message": "User already exists", "err": err.Error()})
+	if err != nil && rows > 0 {
+		c.JSON(http.StatusConflict, gin.H{"message": "User already exists", "err": err.Error()})
 
 	} else if err == nil && rows == 1 {
 		c.JSON(http.StatusOK, gin.H{"message": "Successfully registered"})
+	} else {
+		c.AbortWithStatusJSON(http.StatusNotAcceptable, gin.H{"message": err.Error()})
 	}
 
 }

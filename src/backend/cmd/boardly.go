@@ -1,12 +1,14 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"github.com/wuraLab/boardly/src/backend/internal/config"
+	"github.com/wuraLab/boardly/src/backend/internal/db"
 	"github.com/wuraLab/boardly/src/backend/internal/routes"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -29,6 +31,9 @@ func main() {
 	var DB *gorm.DB
 	var err error
 	var Config config.Config
+
+	migrate := flag.Bool("migrate", true, "display colorized output")
+
 	//Load configuration
 	if Config, err = config.LoadConfig(".env"); err != nil {
 		log.Fatal(err)
@@ -39,6 +44,10 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	//do migration
+	if *migrate {
+		db.Migrate(DB)
+	}
 	//Start the default gin server
 	// r := gin.Default()
 	// api := r.Group("/api/v1")
