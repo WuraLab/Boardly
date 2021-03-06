@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import { GetStaticProps } from 'next'
+// import Link from 'next/link'
+// import { GetStaticProps } from 'next'
 
 export default function Home() {
   return (

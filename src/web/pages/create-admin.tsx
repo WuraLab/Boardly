@@ -1,48 +1,39 @@
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import { Container, FormControl, Button, Typography } from "@material-ui/core";
-import { TextField } from "@material-ui/core";
 import "@fontsource/poppins";
-import InputLabel from '@material-ui/core/InputLabel';
+import InputLabel from "@material-ui/core/InputLabel";
 import {
     createStyles,
     fade,
     Theme,
     withStyles,
     makeStyles,
-} from '@material-ui/core/styles';
-import InputBase from '@material-ui/core/InputBase';
+} from "@material-ui/core/styles";
+import InputBase from "@material-ui/core/InputBase";
 
 const BootstrapInput = withStyles((theme: Theme) =>
     createStyles({
         root: {
-            'label + &': {
+            "label + &": {
                 marginTop: theme.spacing(3),
             },
         },
         input: {
             borderRadius: 4,
-            position: 'relative',
-            backgroundColor: 'rgba(196, 196, 196, 0.2)',
-            border: '1px solid black',
+            position: "relative",
+            backgroundColor: "rgba(196, 196, 196, 0.2)",
+            border: "1px solid black",
             fontSize: 16,
-            width: '55vh',
-            padding: '10px 12px',
-            transition: theme.transitions.create(['border-color', 'box-shadow']),
+            width: "55vh",
+            padding: "10px 12px",
+            transition: theme.transitions.create(["border-color", "box-shadow"]),
             // Use the system font instead of the default Roboto font.
             fontFamily: [
-                '-apple-system',
-                'BlinkMacSystemFont',
-                '"Segoe UI"',
-                'Roboto',
-                '"Helvetica Neue"',
-                'Arial',
-                'sans-serif',
-                '"Apple Color Emoji"',
-                '"Segoe UI Emoji"',
-                '"Segoe UI Symbol"',
-            ].join(','),
-            '&:focus': {
+                "-apple-system",
+                "BlinkMacSystemFont",
+            ].join(","),
+            "&:focus": {
                 boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
                 borderColor: theme.palette.primary.main,
             },
@@ -53,8 +44,8 @@ const BootstrapInput = withStyles((theme: Theme) =>
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            display: 'flex',
-            flexWrap: 'wrap',
+            display: "flex",
+            flexWrap: "wrap",
         },
         margin: {
             margin: theme.spacing(1),
