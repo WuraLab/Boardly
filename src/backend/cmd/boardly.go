@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"github.com/wuraLab/boardly/src/backend/internal/config"
+	"github.com/wuraLab/boardly/src/backend/internal/controllers"
 	"github.com/wuraLab/boardly/src/backend/internal/db"
 	"github.com/wuraLab/boardly/src/backend/internal/routes"
 	"gorm.io/driver/postgres"
@@ -48,16 +49,14 @@ func main() {
 	if *migrate {
 		db.Migrate(DB)
 	}
-	//Start the default gin server
-	// r := gin.Default()
-	// api := r.Group("/api/v1")
-	// {
-	// 	/*** START USER ***/
-	// 	user := controllers.User{
-	// 		Base: controllers.Base{
-	// 			DB: DB,
-	// 		},
-	// 	}
+
+	{
+		/*** START USER ***/
+		user := controllers.User{
+			Base: controllers.Base{
+				DB: DB,
+			},
+		}
 
 	// route intialization
 	r := routes.SetupRouter()
