@@ -3,8 +3,6 @@ package models
 import (
 	"errors"
 
-	log "github.com/sirupsen/logrus"
-	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
@@ -25,16 +23,6 @@ func (u *User) Create(db *gorm.DB) (int, error) {
 	}
 	result := db.Debug().Create(&u)
 	return int(result.RowsAffected), result.Error
-}
-
-//Password hash
-func (u *User) hashPassword() (string, error) {
-	hash, err := bcrypt.GenerateFromPassword([]byte(u.Password), 8)
-	if err != nil {
-		log.Error(err)
-		return string(hash), err
-	}
-	return string(hash), nil
 }
 
 //GetUser

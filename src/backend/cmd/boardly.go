@@ -46,7 +46,9 @@ func main() {
 
 	//do migration
 	if *migrate {
-		db.Migrate(DB)
+		if err = db.Migrate(DB); err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	{

@@ -14,14 +14,6 @@ type User struct {
 	Base
 }
 
-var userModel = models.User{}
-
-//getUserID ...
-func getUserID(c *gin.Context) (userID int64) {
-	//MustGet returns the value for the given key if it exists, otherwise it panics.
-	return c.MustGet("userID").(int64)
-}
-
 //Register ...
 func (ctrl *User) Register(c *gin.Context) {
 	user := models.User{}
