@@ -10,29 +10,26 @@ import (
 )
 
 // SetupRouter setup routing here
-func SetupRouter() *gin.Engine {
-	var DB *gorm.DB
+func SetupRouter(DB *gorm.DB) *gin.Engine {
 	//Start the default gin server
-	r := gin.Default()
+	r := gin.New()
 
 	// Middlewares
 	r.Use(middlewares.ErrorHandler)
 	r.Use(middlewares.CORSMiddleware())
 
 	api := r.Group("/api/v1")
-
-	// routes
 	{
-		/*** START USER ***/
-		user := controllers.User{
+		userController := controllers.User{
 			Base: controllers.Base{
 				DB: DB,
 			},
 		}
 
-		// v1.POST("/user/login", user.Login)
-		api.POST("/user/register", user.Register)
-		// v1.GET("/user/logout", user.Logout)
+		api.POST("/user/register", userController.Register)
+
+		api.POST("/user/login", userController.Login)
+
 	}
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{

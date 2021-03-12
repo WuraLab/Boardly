@@ -8,7 +8,6 @@ import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"github.com/wuraLab/boardly/src/backend/internal/config"
-	"github.com/wuraLab/boardly/src/backend/internal/controllers"
 	"github.com/wuraLab/boardly/src/backend/internal/db"
 	"github.com/wuraLab/boardly/src/backend/internal/routes"
 	"gorm.io/driver/postgres"
@@ -51,35 +50,30 @@ func main() {
 	}
 
 	{
-		/*** START USER ***/
-		user := controllers.User{
-			Base: controllers.Base{
-				DB: DB,
-			},
+
+		// route intialization
+		r := routes.SetupRouter(DB)
+
+		log.Infoln(Config.Server.SSL)
+
+		if Config.Server.ENV == "PRODUCTION" {
+			gin.SetMode(gin.ReleaseMode)
 		}
 
-	// route intialization
-	r := routes.SetupRouter()
+		if Config.Server.SSL == "TRUE" {
 
-	log.Infoln(Config.Server.SSL)
+			SSLKeys := &struct {
+				CERT string
+				KEY  string
+			}{}
 
-	if Config.Server.ENV == "PRODUCTION" {
-		gin.SetMode(gin.ReleaseMode)
-	}
+			//Generated using sh generate-certificate.sh
+			SSLKeys.CERT = "./cert/myCA.cer"
+			SSLKeys.KEY = "./cert/myCA.key"
 
-	if Config.Server.SSL == "TRUE" {
-
-		SSLKeys := &struct {
-			CERT string
-			KEY  string
-		}{}
-
-		//Generated using sh generate-certificate.sh
-		SSLKeys.CERT = "./cert/myCA.cer"
-		SSLKeys.KEY = "./cert/myCA.key"
-
-		log.Fatal(r.RunTLS(":"+Config.Server.Port, SSLKeys.CERT, SSLKeys.KEY))
-	} else {
-		log.Fatal(r.Run(":" + Config.Server.Port))
+			log.Fatal(r.RunTLS(":"+Config.Server.Port, SSLKeys.CERT, SSLKeys.KEY))
+		} else {
+			log.Fatal(r.Run(":" + Config.Server.Port))
+		}
 	}
 }
