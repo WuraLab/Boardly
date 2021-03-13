@@ -24,17 +24,17 @@ const useStyles = makeStyles((theme: Theme) =>
       margin :"0px",
       padding:"0px",
       top:"0px",
-      backgroundColor: "#E5E5E5",
+      backgroundColor: "#FFFFFF",
     },
     
     rightGrid: {
         position: "relative",
-        backgroundColor: "#E5E5E5",
+        backgroundColor: "#FFFFFF",
         height: "100%",
     },
     leftGrid: {
         height: "100%",
-        backgroundColor: "#E5E5E5",
+        backgroundColor: "#FFFFFF",
         // border:"1px solid red",
         padding: 0,
         margin:0,
@@ -85,7 +85,7 @@ export const ForgotPassword: React.FC = () => {
                                         border:"0.2px solid black",
                                         width:"100%",
                                         borderRadius:"10px",
-                                        backgroundColor: "#C4C4C4",
+                                        backgroundColor: "#F3F3F3",
                                         padding:"10px"
                                     }} 
                                     />
@@ -93,7 +93,7 @@ export const ForgotPassword: React.FC = () => {
                             </form>
 
                             <Box mt="10%">
-                                <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="#E5E5E5">
+                                <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="#FFFFFF">
                                         <Button variant="outlined" 
                                             style= {{
                                                 width:"100%",
@@ -125,14 +125,15 @@ export const ForgotPassword: React.FC = () => {
                         maxWidth:"100%",
                         position: "absolute",
                         top: "25%",
-                        left: "25%",
+                        left: "15%",
                         }} 
                         src={Forgot_password} 
                     />
                     <img style={{
                         height:"auto",
                         width:"100%",
-                        backgroundColor: "#E5E5E5",
+                        bottom:"0px",
+                        backgroundColor: "#FFFFFF",
                         border:"0"
                             }} 
                         src={RightBackground} 
