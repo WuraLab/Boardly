@@ -40,7 +40,7 @@ func (ctrl *User) Register(c *gin.Context) {
 
 }
 
-//Register ...
+//Login ...
 func (ctrl *User) Login(c *gin.Context) {
 	user := models.User{}
 
