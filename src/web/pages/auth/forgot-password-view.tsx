@@ -10,9 +10,9 @@ const ForgotPasswordView: React.FC = () => {
     return (
         // <Layout>
         <>
-        <GlobalStyles/>
-        <ForgotPassword />
-        {/* // </Layout> */}
+            <GlobalStyles />
+            <ForgotPassword />
+            {/* // </Layout> */}
         </>
     );
 };
