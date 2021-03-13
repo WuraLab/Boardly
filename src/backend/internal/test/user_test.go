@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/wuraLab/boardly/src/backend/internal/controllers"
 	"github.com/wuraLab/boardly/src/backend/internal/config"
-	"github.com/wuraLab/boardly/src/backend/internal/db"
+	"github.com/wuraLab/boardly/src/backend/internal/route"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -27,6 +27,10 @@ func init() {
 	if DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{}); err != nil {
 		log.Fatalln(err)
 	}
+}
+
+func main() {
+	
 }
 
 func TestRegister(t *testing.T) {
