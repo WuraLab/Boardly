@@ -1,4 +1,4 @@
-package db_test
+package test
 
 import (
 	"fmt"
@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/wuraLab/boardly/src/backend/internal/controllers"
 	"github.com/wuraLab/boardly/src/backend/internal/config"
 	"github.com/wuraLab/boardly/src/backend/internal/db"
 	"gorm.io/driver/postgres"
@@ -28,6 +29,6 @@ func init() {
 	}
 }
 
-func TestMigrate(t *testing.T) {
-	assert.NoError(t, db.Migrate(DB), "Migration was not successful")
+func TestRegister(t *testing.T) {
+	controller.
 }
