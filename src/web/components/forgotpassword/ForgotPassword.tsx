@@ -47,8 +47,10 @@ const useStyles = makeStyles((theme: Theme) =>
         lineHeight: "60px",
         marginLeft:"10%"
     },
-    forgotPassInput: {
-
+    forgotPasswordGrid: {
+        backgroundImage: `url(${RightBackground})`,
+        height:"100vh",
+        width:"100%"
     }
 
   }),
@@ -73,7 +75,7 @@ export const ForgotPassword: React.FC = () => {
                                <p>Forgot Password</p>
                         </Box>
 
-                        <Box className={classes.forgotPassInput} m="10%" mt="20%">
+                        <Box m="10%" mt="20%">
                              <Typography variant="h6" gutterBottom>
                                 <p>E-mail address</p>
                             </Typography>
@@ -111,33 +113,24 @@ export const ForgotPassword: React.FC = () => {
                             </Box>
 
                         </Box>
-
-                       
-
-
-                  
-                       
                         
                 </Grid>
-                <Grid item xs={12} sm={6} className={classes.rightGrid}>
-                    <img style={{
-                        height:"auto",
-                        maxWidth:"100%",
-                        position: "absolute",
-                        top: "25%",
-                        left: "15%",
-                        }} 
-                        src={Forgot_password} 
-                    />
-                    <img style={{
-                        height:"auto",
-                        width:"100%",
-                        bottom:"0px",
-                        backgroundColor: "#FFFFFF",
-                        border:"0"
+                <Grid item xs={12} sm={6} className={classes.rightGrid} >
+
+                    <Box 
+                        className={classes.forgotPasswordGrid} 
+                        justifyContent="center" 
+                        alignItems="center"
+                        display="flex" 
+                         >
+                        <img style={{
+                            height:"400px",
+                            maxWidth:"700px",
+                            marginLeft:"100px"
                             }} 
-                        src={RightBackground} 
-                    />
+                            src={Forgot_password} 
+                        />
+                    </Box>
 
                 </Grid>
             </Grid>
