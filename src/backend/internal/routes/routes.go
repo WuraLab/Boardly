@@ -31,14 +31,13 @@ func SetupRouter(DB *gorm.DB) *gin.Engine {
 		api.POST("/user/login", userController.Login)
 
 	}
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusNotFound, gin.H{
-			"msg": "Welcome to Boardly",
-		})
-	})
+	r.GET("/", controllers.Home)
 
 	r.NoRoute(func(c *gin.Context) {
-		c.JSON(http.StatusNotFound, gin.H{})
+		c.JSON(http.StatusNotFound, gin.H{
+			"status":  404,
+			"message": "Route Not Found",
+		})
 	})
 
 	return r

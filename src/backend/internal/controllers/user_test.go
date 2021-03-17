@@ -1,23 +1,23 @@
-package controllers
+package controllers_test
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
 
+	"net/http"
 	"net/http/httptest"
 	"testing"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
 	"github.com/wuraLab/boardly/src/backend/internal/controllers"
 	"github.com/wuraLab/boardly/src/backend/internal/middlewares"
 	"github.com/wuraLab/boardly/src/backend/internal/models"
 	"gorm.io/gorm"
-	"github.com/stretchr/testify/assert"
 )
 
-var DB *gorm.DB
+// var DB *gorm.DB
 
 // SetupRouter setup routing here
 func SetupRouter(DB *gorm.DB) *gin.Engine {
@@ -41,20 +41,20 @@ func SetupRouter(DB *gorm.DB) *gin.Engine {
 		api.POST("/user/login", userController.Login)
 
 	}
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusNotFound, gin.H{
-			"msg": "Welcome to Boardly",
-		})
-	})
+	r.GET("/", controllers.Home)
 
 	r.NoRoute(func(c *gin.Context) {
-		c.JSON(http.StatusNotFound, gin.H{})
+		c.JSON(http.StatusNotFound, gin.H{
+			"status":  404,
+			"message": "Route Not Found",
+		})
 	})
 
 	return r
 }
 
 func main() {
+	var DB *gorm.DB
 	r := SetupRouter(DB)
 	r.Run()
 }
@@ -65,7 +65,8 @@ func main() {
 *
 * Must return response code 200
  */
- func TestRegister(t *testing.T) {
+func TestRegister(t *testing.T) {
+	var DB *gorm.DB
 	testRouter := SetupRouter(DB)
 
 	var registerForm models.User
