@@ -1,6 +1,6 @@
 import React from 'react';
 import { ForgotPassword } from '../../components/forgotpassword/ForgotPassword';
-import { Layout } from '../../components/layout/index';
+// import { Layout } from '../../components/layout/index';
 import GlobalStyles from '../../assets/global-styles';
 
 // export const ForgotPasswordView: React.FC = () => {
