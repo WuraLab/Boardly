@@ -3,21 +3,6 @@ import Head from 'next/head';
 // import { GetStaticProps } from 'next';
 import { Layout } from '../components/layout/index';
 
-<<<<<<< HEAD
-
-export default function Home() {
-  return (
-    <div>
-      <Head>
-        <title>Boardly</title>
-      </Head>
-      <div>
-         Welcome to Boardly
-      </div>
-    </div>
-  )
-}
-=======
 const Home: React.FC = () => {
     return (
         <>

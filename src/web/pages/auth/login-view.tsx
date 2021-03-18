@@ -1,16 +1,21 @@
-import Head from 'next/head';
-// import Link from 'next/link';
-// import { GetStaticProps } from 'next';
+import React from 'react';
+import Login from '../../components/login/Login';
 
-const Home: React.FC = () => {
+
+
+
+// export const ForgotPasswordView: React.FC = () => {
+// export default function ForgotPasswordView() {
+
+const LoginView: React.FC = () => {
     return (
-        <div>
-            <Head>
-                <title>Boardly</title>]
-            </Head>
-            <div>Welcome to Boardly</div>
-        </div>
+        // 
+        <>
+           
+            <Login />
+            
+        </>
     );
 };
 
-export default Home;
+export default LoginView;
