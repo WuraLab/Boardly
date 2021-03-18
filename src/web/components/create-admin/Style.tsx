@@ -17,7 +17,8 @@ export const useStyles = makeStyles((theme: Theme) =>
             fontWeight: "bold",
             fontSize: "20px",
             fontFamily: "poppins",
-            color: "black"
+            color: "black",
+            position: "relative"
         }
     }),
 );

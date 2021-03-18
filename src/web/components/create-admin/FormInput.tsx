@@ -54,7 +54,7 @@ export const FormInputPassword = (props) => {
                 onChange={handleChange("password")}
                 endAdornment={
                     <InputAdornment position="end">
-                        <IconButton
+                        <IconButton style={{ position: "absolute", marginLeft: "-55px" }}
                             aria-label="toggle password visibility"
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
