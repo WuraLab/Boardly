@@ -2,36 +2,15 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import { Container, FormControl, Button, Typography } from "@material-ui/core";
 import "@fontsource/poppins";
-import InputLabel from "@material-ui/core/InputLabel";
 import {
     createStyles,
     Theme,
     makeStyles,
 } from "@material-ui/core/styles";
-import { BootstrapInput } from "./BootstrapInput";
-import { FormInput } from "./FormInput";
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            display: "flex",
-            flexWrap: "wrap",
-        },
-        margin: {
-            margin: theme.spacing(1),
-        },
-        input: {
-            fontWeight: "bold",
-            fontSize: "20px",
-            fontFamily: "poppins",
-            color: "black"
-        }
-    }),
-);
+import { FormInput, FormInputPassword } from "./FormInput";
 
 
 const CreateAdmin = () => {
-    const classes = useStyles();
     return (
         <Box padding={0} margin={0}>
             <Grid container spacing={0}>
@@ -49,8 +28,8 @@ const CreateAdmin = () => {
                             <br />
                             <FormInput name="Company's Name" placeholder="Wuralab"> </FormInput>
                             <FormInput name="Company's Email" placeholder="contact@wuralab.com"> </FormInput>
-                            <FormInput name="Password" placeholder="Password"> </FormInput>
-                            <FormInput name="Confirm Password" placeholder="confirm-password"> </FormInput>
+                            <FormInputPassword name="Password" placeholder="Password"> </FormInputPassword>
+                            <FormInputPassword name="Confirm Password" placeholder="confirm-password"> </FormInputPassword>
                             < br />
                             <Button variant="contained" style={{ backgroundColor: "#22ad80", color: "#ffffff", width: "50vh" }} >
                                 Create Account
