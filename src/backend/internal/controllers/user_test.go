@@ -9,24 +9,20 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/wuraLab/boardly/src/backend/internal/controllers"
+	// "github.com/wuraLab/boardly/src/backend/internal/middlewares"
+	"github.com/wuraLab/boardly/src/backend/internal/models"
+
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
-	"github.com/wuraLab/boardly/src/backend/internal/controllers"
-	"github.com/wuraLab/boardly/src/backend/internal/middlewares"
-	"github.com/wuraLab/boardly/src/backend/internal/models"
 	"gorm.io/gorm"
 )
-
-// var DB *gorm.DB
 
 // SetupRouter setup routing here
 func SetupRouter(DB *gorm.DB) *gin.Engine {
 	//Start the default gin server
-	r := gin.New()
-
-	// Middlewares
-	r.Use(middlewares.ErrorHandler)
-	r.Use(middlewares.CORSMiddleware())
+	r := gin.Default()
+	gin.SetMode(gin.TestMode)
 
 	api := r.Group("/api/v1")
 	{
@@ -54,7 +50,6 @@ func SetupRouter(DB *gorm.DB) *gin.Engine {
 }
 
 func main() {
-	var DB *gorm.DB
 	r := SetupRouter(DB)
 	r.Run()
 }
@@ -66,15 +61,15 @@ func main() {
 * Must return response code 200
  */
 func TestRegister(t *testing.T) {
-	var DB *gorm.DB
+
 	testRouter := SetupRouter(DB)
 
-	var registerForm models.User
-
-	registerForm.FirstName = "testing"
-	registerForm.LastName = "tester"
-	registerForm.Email = "tester@test.com"
-	registerForm.Password = "testPassword123$"
+	registerForm := models.User{
+		FirstName: "testing",
+		LastName:  "tester",
+		Email:     "tester@test.com",
+		Password:  "testPassword123$",
+	}
 
 	data, _ := json.Marshal(registerForm)
 
