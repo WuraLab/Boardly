@@ -20,7 +20,7 @@ func (ctrl *User) Register(c *gin.Context) {
 
 	if err := c.ShouldBindJSON(&user); err != nil {
 		log.Error(err)
-		c.AbortWithStatusJSON(http.StatusNotAcceptable, gin.H{"message": "Invalid form"})
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "Invalid form"})
 		return
 	}
 	hashPassword, err := HashPassword("hello")

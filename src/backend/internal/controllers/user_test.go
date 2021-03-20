@@ -64,24 +64,65 @@ func TestRegister(t *testing.T) {
 
 	testRouter := SetupRouter(DB)
 
-	registerForm := models.User{
-		FirstName: "testing",
-		LastName:  "tester",
-		Email:     "tester@test.com",
-		Password:  "testPassword123$",
+	testCases := []struct{
+		input          models.User
+		expected int
+	  }{
+		//missing email
+		{
+		  input: models.User{
+						FirstName: "testing",
+						LastName:  "tester",
+						Email:     "",
+						Password:  "testPassword123$",
+		  },
+		  expected: http.StatusUnprocessableEntity,
+		},
+		//missing password
+		{
+			input: models.User{
+						  FirstName: "testing",
+						  LastName:  "tester",
+						  Email:     "tester@test.com",
+						  Password:  "",
+			},
+			expected: http.StatusUnprocessableEntity,
+		},
+		//
+		{
+			input: models.User{
+						  FirstName: "",
+						  LastName:  "tester",
+						  Email:     "tester@test.com",
+						  Password:  "testPassword123$",
+			},
+			expected: http.StatusUnprocessableEntity,
+		},
+		//compltely filled out
+		{
+			input: models.User{
+						  FirstName: "testing",
+						  LastName:  "tester",
+						  Email:     "tester@test.com",
+						  Password:  "testPassword123$",
+			},
+			expected: http.StatusOK,
+		},
 	}
+   for _, testCase := range testCases {
 
-	data, _ := json.Marshal(registerForm)
+		data, _ := json.Marshal(testCase.input)
 
-	req, err := http.NewRequest("POST", "/api/v1/user/register", bytes.NewBufferString(string(data)))
-	req.Header.Set("Content-Type", "application/json")
+		req, err := http.NewRequest("POST", "/api/v1/user/register", bytes.NewBufferString(string(data)))
+		req.Header.Set("Content-Type", "application/json")
 
-	if err != nil {
-		fmt.Println(err)
-	}
+		if err != nil {
+			fmt.Println(err)
+		}
 
-	resp := httptest.NewRecorder()
+		resp := httptest.NewRecorder()
 
-	testRouter.ServeHTTP(resp, req)
-	assert.Equal(t, resp.Code, http.StatusOK)
+		testRouter.ServeHTTP(resp, req)
+		assert.Equal(t, testCase.expected, resp.Code)
+   }
 }
