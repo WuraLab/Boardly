@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"encoding/json"
 	"fmt"
+	"log"
 
 	"net/http"
 	"net/http/httptest"
