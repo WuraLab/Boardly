@@ -2,6 +2,7 @@ package controllers_test
 
 import (
 	"bytes"
+	"io/ioutil"
 	"encoding/json"
 	"fmt"
 
@@ -125,4 +126,45 @@ func TestRegister(t *testing.T) {
 		testRouter.ServeHTTP(resp, req)
 		assert.Equal(t, testCase.expected, resp.Code)
    }
+}
+
+
+func TestLogin(t *testing.T) {
+
+	testRouter := SetupRouter(DB)
+
+	var loginForm models.User
+
+	loginForm.Email = "tester@test.com"
+	loginForm.Password = "testPassword123$"
+
+	data, _ := json.Marshal(loginForm)
+
+	req, err := http.NewRequest("POST", "/api/v1/user/login", bytes.NewBufferString(string(data)))
+	req.Header.Set("Content-Type", "application/json")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	
+	resp := httptest.NewRecorder()
+
+	testRouter.ServeHTTP(resp, req)
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var res = &struct {
+		Message string `json:"message"`
+		User    struct {
+			Base
+			Email     string `json:"email"`
+		} `json:"user"`
+	}{}
+
+	json.Unmarshal(body, &res)
+
+	assert.Equal(t, resp.Code, http.StatusOK)
 }
