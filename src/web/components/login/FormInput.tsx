@@ -1,10 +1,10 @@
-import React from "react";
-import { FormControl } from "@material-ui/core";
-import InputLabel from "@material-ui/core/InputLabel";
-import { BootstrapInput } from "./BootsrapInput";
-import { useStyles } from "./Style";
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import React from 'react';
+import { FormControl } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import { BootstrapInput } from './BootsrapInput';
+import { useStyles } from './Style';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
@@ -16,20 +16,20 @@ interface State {
 export const FormInput = (props) => {
     const classes = useStyles();
     return (
-        <FormControl className={classes.margin}>
-            <InputLabel shrink htmlFor="bootstrap-input" className={classes.input} >
+        <FormControl>
+            <InputLabel shrink htmlFor="bootstrap-input" className={classes.input}>
                 {props.name}
             </InputLabel>
             <BootstrapInput id="bootstrap-input" placeholder={props.placeholder} />
         </FormControl>
-    )
-}
+    );
+};
 
 export const FormInputPassword = (props) => {
     const classes = useStyles();
     const [values, setValues] = React.useState<State>({
         showPassword: true,
-        password: "",
+        password: ''
     });
 
     const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,26 +44,28 @@ export const FormInputPassword = (props) => {
         event.preventDefault();
     };
     return (
-        <FormControl className={classes.margin}>
-            <InputLabel shrink htmlFor="bootstrap-input" className={classes.input} >
+        <FormControl className={classes.marginTop}>
+            <InputLabel shrink htmlFor="bootstrap-input" className={classes.input}>
                 {props.name}
             </InputLabel>
-            <BootstrapInput id="bootstrap-input" placeholder={props.placeholder}
-                type={values.showPassword ? "text" : "password"}
+            <BootstrapInput
+                id="bootstrap-input"
+                placeholder={props.placeholder}
+                type={values.showPassword ? 'text' : 'password'}
                 value={values.password}
-                onChange={handleChange("password")}
+                onChange={handleChange('password')}
                 endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton style={{ position: "absolute", marginLeft: "-55px" }}
+                    <InputAdornment style={{ margin: 0 }} position="end">
+                        <IconButton
+                            style={{ position: 'absolute', marginLeft: '-55px' }}
                             aria-label="toggle password visibility"
                             onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                        >
+                            onMouseDown={handleMouseDownPassword}>
                             {values.showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                     </InputAdornment>
                 }
             />
         </FormControl>
-    )
-}
+    );
+};

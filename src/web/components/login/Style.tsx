@@ -13,6 +13,9 @@ export const useStyles = makeStyles((theme: Theme) =>
         margin: {
             margin: theme.spacing(1),
         },
+        marginTop: {
+            marginTop: theme.spacing(1),
+        },
         input: {
             fontWeight: "bold",
             fontSize: "20px",
