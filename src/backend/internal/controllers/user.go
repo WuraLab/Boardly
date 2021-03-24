@@ -7,11 +7,12 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/wuraLab/boardly/src/backend/internal/models"
 	"golang.org/x/crypto/bcrypt"
+	"gorm.io/gorm"
 )
 
 //User  Controller
 type User struct {
-	Base
+    DB *gorm.DB
 }
 
 //Register ...
@@ -28,6 +29,11 @@ func (ctrl *User) Register(c *gin.Context) {
 		return	
 	}
 	hashPassword, err := HashPassword(user.Password)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError, gin.H{})
+		return
+	}
 	user.Password = hashPassword
 	rows, err := user.Create(ctrl.DB)
 

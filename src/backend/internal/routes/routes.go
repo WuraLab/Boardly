@@ -21,9 +21,7 @@ func SetupRouter(DB *gorm.DB) *gin.Engine {
 	api := r.Group("/api/v1")
 	{
 		userController := controllers.User{
-			Base: controllers.Base{
-				DB: DB,
-			},
+			DB: DB,
 		}
 
 		api.POST("/user/register", userController.Register)

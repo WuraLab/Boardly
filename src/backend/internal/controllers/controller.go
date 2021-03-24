@@ -16,5 +16,4 @@ func Home(c *gin.Context) {
 		"status":  200,
 		"message": "Welcome to Boardly",
 	})
-	return
 }

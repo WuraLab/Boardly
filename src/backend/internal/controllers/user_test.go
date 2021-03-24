@@ -26,9 +26,7 @@ func SetupRouter(DB *gorm.DB) *gin.Engine {
 	api := r.Group("/api/v1")
 	{
 		userController := controllers.User{
-			Base: controllers.Base{
-				DB: DB,
-			},
+			DB: DB,
 		}
 
 		api.POST("/user/register", userController.Register)
@@ -48,17 +46,9 @@ func SetupRouter(DB *gorm.DB) *gin.Engine {
 	return r
 }
 
-func main() {
-	r := SetupRouter(DB)
-	r.Run()
-}
-
 /**
 * TestRegister
-* Test user registration
-*
-* Must return response code 200
- */
+*/
 func TestRegister(t *testing.T) {
 
 	testRouter := SetupRouter(DB)
