@@ -1,5 +1,6 @@
 import React from 'react';
-import { ForgotPassword } from '../../components/forgotpassword/ForgotPassword';
+import CreateAdmin from '../../components/create-admin/CreateAdmin';
+// import { Layout } from '../../components/layout/index';
 import GlobalStyles from '../../assets/global-styles';
 
 // export const ForgotPasswordView: React.FC = () => {
@@ -9,8 +10,8 @@ const ForgotPasswordView: React.FC = () => {
     return (
         // <Layout>
         <>
-            <GlobalStyles />
-            <ForgotPassword />
+            {/* <GlobalStyles /> */}
+            <CreateAdmin />
             {/* // </Layout> */}
         </>
     );
