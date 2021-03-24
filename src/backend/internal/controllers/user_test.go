@@ -2,11 +2,8 @@ package controllers_test
 
 import (
 	"bytes"
-	"io/ioutil"
 	"encoding/json"
-	"fmt"
-	"log"
-
+	log "github.com/sirupsen/logrus"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -119,7 +116,7 @@ func TestRegister(t *testing.T) {
 		req.Header.Set("Content-Type", "application/json")
 
 		if err != nil {
-			fmt.Println(err)
+			log.Fatalln(err)
 		}
 
 		resp := httptest.NewRecorder()
@@ -134,38 +131,84 @@ func TestLogin(t *testing.T) {
 
 	testRouter := SetupRouter(DB)
 
-	var loginForm models.User
+	//create user first
+	idealCase := models.User{
+		FirstName: "loginfirstname",
+		LastName:  "loginlastname",
+		Email:     "login@test.com",
+		Password:  "loginPassword123$",		
+	}
+	data, _ := json.Marshal(idealCase)
 
-	loginForm.Email = "tester@test.com"
-	loginForm.Password = "testPassword123$"
-
-	data, _ := json.Marshal(loginForm)
-
-	req, err := http.NewRequest("POST", "/api/v1/user/login", bytes.NewBufferString(string(data)))
+	req, err := http.NewRequest("POST", "/api/v1/user/register", bytes.NewBufferString(string(data)))
 	req.Header.Set("Content-Type", "application/json")
 
 	if err != nil {
-		fmt.Println(err)
+		log.Fatalln(err)
 	}
-	
 	resp := httptest.NewRecorder()
-
 	testRouter.ServeHTTP(resp, req)
+	assert.Equal(t, http.StatusOK, resp.Code)
 
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		log.Fatal(err)
+	testCases := []struct{
+		input          models.User
+		expected int
+	  }{
+		//missing email
+		{
+		  input: models.User{
+						Email:     "",
+						Password:  idealCase.Password,
+		  },
+		  expected: http.StatusUnprocessableEntity,
+		},
+		//missing password
+		{
+			input: models.User{
+						  Email:     idealCase.Email,
+						  Password:  "",
+			},
+			expected: http.StatusUnprocessableEntity,
+		},
+		//non existing email
+		{
+			input: models.User{
+						  Email:     "wrong@test.com",
+						  Password:  idealCase.Password,
+			},
+			expected: http.StatusUnauthorized,
+		},
+		//wrong password
+		{
+			input: models.User{
+						  Email:     idealCase.Email,
+						  Password:  "wrongpassword",
+			},
+			expected: http.StatusUnauthorized,
+		},
+		//completely filled out
+		{
+			input: models.User{
+						  Email:     idealCase.Email,
+						  Password:  idealCase.Password,
+			},
+			expected: http.StatusOK,
+		},
 	}
+   for _, testCase := range testCases {
 
-	var res = &struct {
-		Message string `json:"message"`
-		User    struct {
-			Base
-			Email     string `json:"email"`
-		} `json:"user"`
-	}{}
+		data, _ := json.Marshal(testCase.input)
 
-	json.Unmarshal(body, &res)
+		req, err := http.NewRequest("POST", "/api/v1/user/login", bytes.NewBufferString(string(data)))
+		req.Header.Set("Content-Type", "application/json")
 
-	assert.Equal(t, resp.Code, http.StatusOK)
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		resp := httptest.NewRecorder()
+
+		testRouter.ServeHTTP(resp, req)
+		assert.Equal(t, testCase.expected, resp.Code)
+   }
 }

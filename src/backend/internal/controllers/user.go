@@ -18,12 +18,16 @@ type User struct {
 func (ctrl *User) Register(c *gin.Context) {
 	user := models.User{}
 
-	if err := c.ShouldBindJSON(&user); err != nil {
+	err := c.ShouldBindJSON(&user)
+	if err != nil {
 		log.Error(err)
-		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "Invalid form"})
-		return
 	}
-	hashPassword, err := HashPassword("hello")
+    //check if there is a binding error or empty firstname or lastname
+	if err != nil || len(user.FirstName) == 0 || len(user.LastName) == 0{
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "All fields are required"})
+		return	
+	}
+	hashPassword, err := HashPassword(user.Password)
 	user.Password = hashPassword
 	rows, err := user.Create(ctrl.DB)
 
@@ -46,7 +50,7 @@ func (ctrl *User) Login(c *gin.Context) {
 
 	if err := c.ShouldBindJSON(&user); err != nil {
 		log.Error(err)
-		c.AbortWithStatusJSON(http.StatusNotAcceptable, gin.H{"message": "Invalid form"})
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "All fields are required"})
 		return
 	}
 	//check if user exists
