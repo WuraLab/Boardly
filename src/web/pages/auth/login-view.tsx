@@ -6,7 +6,7 @@ const Home: React.FC = () => {
     return (
         <div>
             <Head>
-                <title>Boardly</title>]
+                <title>Boardly</title>
             </Head>
             <div>Welcome to Boardly</div>
         </div>
