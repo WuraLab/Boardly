@@ -23,12 +23,16 @@ type LoginResult struct {
     Token     string           `json:"token"`
 }
 
+const (
+	JWT_SECRET = "secret"
+)
+
 // SetupRouter setup routing here
 func SetupRouter(DB *gorm.DB) *gin.Engine {
 	//Start the default gin server
 	r := gin.Default()
 	gin.SetMode(gin.TestMode)
-	authMiddleware := middlewares.JWTMiddleware(DB)
+	authMiddleware := middlewares.JWTMiddleware(DB,JWT_SECRET)
 
 	api := r.Group("/api/v1")
 	{

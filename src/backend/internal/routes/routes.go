@@ -6,16 +6,17 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/wuraLab/boardly/src/backend/internal/controllers"
 	"github.com/wuraLab/boardly/src/backend/internal/middlewares"
+	"github.com/wuraLab/boardly/src/backend/internal/config"
 	"gorm.io/gorm"
 )
 
 // SetupRouter setup routing here
-func SetupRouter(DB *gorm.DB) *gin.Engine {
+func SetupRouter(DB *gorm.DB, config *config.Config) *gin.Engine {
 	//Start the default gin server
 	r := gin.New()
 
 	// Middlewares
-	authMiddleware := middlewares.JWTMiddleware(DB)
+	authMiddleware := middlewares.JWTMiddleware(DB,config.Server.JWT)
 	r.Use(middlewares.ErrorHandler)
 	r.Use(middlewares.CORSMiddleware())
 

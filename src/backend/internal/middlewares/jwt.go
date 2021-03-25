@@ -14,10 +14,10 @@ import (
 const (
 	identityKey string = "ID"
 )
-func JWTMiddleware(DB *gorm.DB) *jwt.GinJWTMiddleware {
+func JWTMiddleware(DB *gorm.DB,secret string) *jwt.GinJWTMiddleware {
 		authMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
 			Realm:       "test zone",
-			Key:         []byte("secret"),
+			Key:         []byte(secret),
 			Timeout:     time.Hour,
 			MaxRefresh:  time.Hour,
 			IdentityKey: identityKey,
