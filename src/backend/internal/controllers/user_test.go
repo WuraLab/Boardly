@@ -249,7 +249,7 @@ func TestRefresh(t *testing.T) {
 	}
 	resp = httptest.NewRecorder()
 	testRouter.ServeHTTP(resp, req)
-	b, err := ioutil.ReadAll(resp.Body)
+	b, _ := ioutil.ReadAll(resp.Body)
 	if err = json.Unmarshal(b,&loginResult); err != nil {
 		log.Error(err)
 	}
