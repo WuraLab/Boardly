@@ -22,6 +22,8 @@ type Database struct {
 type Server struct {
 	Host string `mapstructure:"SERVER_HOST"`
 	Port string `mapstructure:"SERVER_PORT"`
+	SSL  string `mapstructure:"SSL"`
+	ENV  string `mapstructure:"ENV"`
 }
 
 func LoadConfig(configFile string, paths ...string) (Config, error) {

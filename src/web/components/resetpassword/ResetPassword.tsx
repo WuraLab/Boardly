@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { FormControl, Grid, Typography, Box, Input } from '@material-ui/core';
 import RightBackground from '../../public/Group5.svg';
-import Forgot_password from '../../public/forgot_password.svg';
+import Reset_password from '../../public/recover-password.svg';
 import Logo from '../../public/logo.svg';
 import Button from '@material-ui/core/Button';
 
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export const ForgotPassword: React.FC = () => {
+export const ResetPassword: React.FC = () => {
     const classes = useStyles();
     return (
         <>
@@ -68,18 +68,36 @@ export const ForgotPassword: React.FC = () => {
                         />
 
                         <Box className={classes.forgotPassHeader}>
-                            <p>Forgot Password</p>
+                            <p>Recover Password</p>
                         </Box>
 
                         <Box m="10%" mt="20%">
-                            <Typography variant="h6" gutterBottom>
-                                <p>E-mail address</p>
-                            </Typography>
-
                             <form noValidate autoComplete="off">
                                 <FormControl fullWidth>
+                                    <Typography variant="h6" gutterBottom>
+                                        <p>Password</p>
+                                    </Typography>
+
                                     <Input
-                                        placeholder="user@email.com"
+                                        placeholder="password"
+                                        fullWidth
+                                        style={{
+                                            border: '0.2px solid black',
+                                            width: '100%',
+                                            borderRadius: '10px',
+                                            backgroundColor: '#F3F3F3',
+                                            padding: '10px'
+                                        }}
+                                    />
+                                </FormControl>
+
+                                <FormControl fullWidth>
+                                    <Typography variant="h6" gutterBottom>
+                                        <p>Confirm Password</p>
+                                    </Typography>
+
+                                    <Input
+                                        placeholder="password"
                                         fullWidth
                                         style={{
                                             border: '0.2px solid black',
@@ -110,7 +128,7 @@ export const ForgotPassword: React.FC = () => {
                                             padding: '12px',
                                             borderRadius: '10px'
                                         }}>
-                                        Send Reset Link
+                                        Reset Password
                                     </Button>
                                 </Box>
                             </Box>
@@ -129,7 +147,7 @@ export const ForgotPassword: React.FC = () => {
                                     maxWidth: '700px',
                                     marginLeft: '100px'
                                 }}
-                                src={Forgot_password}
+                                src={Reset_password}
                             />
                         </Box>
                     </Grid>

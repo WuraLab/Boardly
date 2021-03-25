@@ -8,12 +8,14 @@ import Login from '../../components/login/Login';
 
 const LoginView: React.FC = () => {
     return (
+
         // 
         <>
            
             <Login />
             
         </>
+
     );
 };
 
