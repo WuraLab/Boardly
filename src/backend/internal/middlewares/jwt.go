@@ -14,10 +14,12 @@ import (
 const (
 	identityKey = "ID"
 )
-func JWTMiddleware(DB *gorm.DB,secret string) *jwt.GinJWTMiddleware {
+
+func JWTMiddleware(DB *gorm.DB,secret string, secureCookie bool, httpOnly bool) *jwt.GinJWTMiddleware {
 		authMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
 			Realm:       "boardly",
 			Key:         []byte(secret),
+			SigningAlgorithm: "HS256",
 			Timeout:     (time.Minute * 15),
 			MaxRefresh:  time.Hour,
 			IdentityKey: identityKey,
@@ -61,22 +63,11 @@ func JWTMiddleware(DB *gorm.DB,secret string) *jwt.GinJWTMiddleware {
 					"message": message,
 				})
 			},
-			// TokenLookup is a string in the form of "<source>:<name>" that is used
-			// to extract token from the request.
-			// Optional. Default value "header:Authorization".
-			// Possible values:
-			// - "header:<name>"
-			// - "query:<name>"
-			// - "cookie:<name>"
-			// - "param:<name>"
+			SendCookie: true,
+			SecureCookie: secureCookie,
+			CookieHTTPOnly: httpOnly,
 			TokenLookup: "header: Authorization, query: token, cookie: jwt",
-			// TokenLookup: "query:token",
-			// TokenLookup: "cookie:token",
-
-			// TokenHeadName is a string in the header. Default value is "Bearer"
 			TokenHeadName: "Bearer",
-
-			// TimeFunc provides the current time. You can override it to use another time value. This is useful for testing or if your server uses a different time zone than your tokens.
 			TimeFunc: time.Now,
 		})
 

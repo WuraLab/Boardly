@@ -16,7 +16,7 @@ func SetupRouter(DB *gorm.DB, config *config.Config) *gin.Engine {
 	r := gin.New()
 
 	// Middlewares
-	authMiddleware := middlewares.JWTMiddleware(DB,config.Server.JWT)
+	authMiddleware := middlewares.JWTMiddleware(DB,config.Server.JWT,true,true)
 	r.Use(middlewares.ErrorHandler)
 	r.Use(middlewares.CORSMiddleware())
 
@@ -26,14 +26,13 @@ func SetupRouter(DB *gorm.DB, config *config.Config) *gin.Engine {
 			DB: DB,
 		}
 		api.POST("/user/register", userController.Register)
-
 		api.POST("/user/login", authMiddleware.LoginHandler)
-
 	}
 	auth := r.Group("/api/auth")
 	auth.Use(authMiddleware.MiddlewareFunc())
 	{
 		auth.POST("/refresh_token", authMiddleware.RefreshHandler)
+		api.POST("/logout", authMiddleware.LogoutHandler)
 	}
 	r.GET("/", controllers.Home)
 

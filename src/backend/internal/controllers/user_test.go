@@ -32,7 +32,7 @@ func SetupRouter(DB *gorm.DB) *gin.Engine {
 	//Start the default gin server
 	r := gin.Default()
 	gin.SetMode(gin.TestMode)
-	authMiddleware := middlewares.JWTMiddleware(DB,JWT_SECRET)
+	authMiddleware := middlewares.JWTMiddleware(DB,JWT_SECRET,false,false)
 
 	api := r.Group("/api/v1")
 	{
