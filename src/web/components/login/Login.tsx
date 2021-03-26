@@ -1,14 +1,8 @@
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import { Container, FormControl, Button, Typography } from '@material-ui/core';
+import { Container, Button, Typography } from '@material-ui/core';
 import '@fontsource/poppins';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import { FormInput, FormInputPassword } from './FormInput';
-const useStyles = makeStyles({
-    leftText: {
-        textAlign: 'left'
-    }
-});
 
 const Login = () => {
     return (
@@ -16,7 +10,7 @@ const Login = () => {
             <Grid container spacing={0}>
                 <Grid item xs={6}>
                     <Box style={{ margin: '20px 0 20px 100px' }}>
-                        <img src="/boardly_logo.png" width="100" height="100" />
+                        <img src="/boardly_logo.png" width="100" height="100" alt="logo`"/>
                     </Box>
                     <Container
                         style={{
