@@ -12,13 +12,13 @@ import (
 	"gorm.io/gorm"
 )
 const (
-	identityKey string = "ID"
+	identityKey = "ID"
 )
 func JWTMiddleware(DB *gorm.DB,secret string) *jwt.GinJWTMiddleware {
 		authMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
-			Realm:       "test zone",
+			Realm:       "boardly",
 			Key:         []byte(secret),
-			Timeout:     time.Hour,
+			Timeout:     (time.Minute * 15),
 			MaxRefresh:  time.Hour,
 			IdentityKey: identityKey,
 			PayloadFunc: func(data interface{}) jwt.MapClaims {

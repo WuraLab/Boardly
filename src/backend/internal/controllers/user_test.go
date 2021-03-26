@@ -69,6 +69,13 @@ func SetupRouter(DB *gorm.DB) *gin.Engine {
 func TestRegister(t *testing.T) {
 
 	testRouter := SetupRouter(DB)
+		//create user first
+	idealCase := models.User{
+		FirstName: "registerfirstname",
+		LastName:  "registerlastname",
+		Email:     "register@test.com",
+		Password:  "registerPassword123$",		
+	}
 
 	testCases := []struct{
 		input          models.User
@@ -77,40 +84,37 @@ func TestRegister(t *testing.T) {
 		//missing email
 		{
 		  input: models.User{
-						FirstName: "testing",
-						LastName:  "tester",
-						Email:     "",
-						Password:  "testPassword123$",
+						FirstName: idealCase.FirstName,
+						LastName:  idealCase.LastName,
+						Password:  idealCase.Password,
 		  },
 		  expected: http.StatusUnprocessableEntity,
 		},
 		//missing password
 		{
 			input: models.User{
-						  FirstName: "testing",
-						  LastName:  "tester",
-						  Email:     "tester@test.com",
-						  Password:  "",
+						FirstName: idealCase.FirstName,
+						LastName:  idealCase.LastName,
+						Email:     idealCase.Email,
 			},
 			expected: http.StatusUnprocessableEntity,
 		},
-		//
+		//missing firstname or lastname
 		{
 			input: models.User{
-						  FirstName: "",
-						  LastName:  "tester",
-						  Email:     "tester@test.com",
-						  Password:  "testPassword123$",
+						LastName:  idealCase.LastName,
+						Email:     idealCase.Email,
+						Password:  idealCase.Password,
 			},
 			expected: http.StatusUnprocessableEntity,
 		},
 		//compltely filled out
 		{
 			input: models.User{
-						  FirstName: "testing",
-						  LastName:  "tester",
-						  Email:     "tester@test.com",
-						  Password:  "testPassword123$",
+						  FirstName: idealCase.FirstName,
+						  LastName:  idealCase.LastName,
+						  Email:     idealCase.Email,
+						  Password:  idealCase.Password,
 			},
 			expected: http.StatusOK,
 		},
@@ -164,7 +168,6 @@ func TestLogin(t *testing.T) {
 		//missing email
 		{
 		  input: models.User{
-						Email:     "",
 						Password:  idealCase.Password,
 		  },
 		  expected: http.StatusUnauthorized,
@@ -173,7 +176,6 @@ func TestLogin(t *testing.T) {
 		{
 			input: models.User{
 						  Email:     idealCase.Email,
-						  Password:  "",
 			},
 			expected: http.StatusUnauthorized,
 		},
