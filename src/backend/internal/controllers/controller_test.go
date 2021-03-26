@@ -1,9 +1,10 @@
-package models_test
+package controllers_test
 
 import (
+	"github.com/wuraLab/boardly/src/backend/internal/db"
 	"fmt"
 	"log"
-	"github.com/wuraLab/boardly/src/backend/internal/db"
+
 	"github.com/wuraLab/boardly/src/backend/internal/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -27,3 +28,4 @@ func init() {
 		log.Fatalln(err)
 	}
 }
+
