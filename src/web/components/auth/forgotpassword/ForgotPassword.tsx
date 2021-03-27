@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: '#FFFFFF',
             height: '100%'
         },
+
         leftGrid: {
             height: '100%',
             backgroundColor: '#FFFFFF',
