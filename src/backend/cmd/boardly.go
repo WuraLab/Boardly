@@ -54,7 +54,7 @@ func main() {
 	{
 
 		// route intialization
-		r := routes.SetupRouter(DB)
+		r := routes.SetupRouter(DB, &Config)
 
 		log.Infoln(Config.Server.SSL)
 
