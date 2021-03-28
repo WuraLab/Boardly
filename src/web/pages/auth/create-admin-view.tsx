@@ -1,12 +1,10 @@
 import React from 'react';
 import CreateAdmin from '../../components/create-admin/CreateAdmin';
-// import { Layout } from '../../components/layout/index';
-import GlobalStyles from '../../assets/global-styles';
 
 // export const ForgotPasswordView: React.FC = () => {
 // export default function ForgotPasswordView() {
 
-const ForgotPasswordView: React.FC = () => {
+const CreateAdminView: React.FC = () => {
     return (
         // <Layout>
         <>
@@ -17,4 +15,4 @@ const ForgotPasswordView: React.FC = () => {
     );
 };
 
-export default ForgotPasswordView;
+export default CreateAdminView;
