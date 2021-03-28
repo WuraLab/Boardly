@@ -1,9 +1,5 @@
 import Head from 'next/head';
 
-// import Link from 'next/link';
-// import { GetStaticProps } from 'next';
-// import { Layout } from '../components/layout/index';
-
 const Home: React.FC = () => {
     return (
         <>
