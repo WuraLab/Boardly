@@ -1,6 +1,4 @@
 import Head from 'next/head';
-// import Link from 'next/link';
-// import { GetStaticProps } from 'next';
 
 const Home: React.FC = () => {
     return (
