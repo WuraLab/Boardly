@@ -108,7 +108,7 @@ func TestRegister(t *testing.T) {
 			},
 			expected: http.StatusUnprocessableEntity,
 		},
-		//compltely filled out
+		//completely filled out
 		{
 			input: models.User{
 						  FirstName: idealCase.FirstName,
@@ -137,6 +137,77 @@ func TestRegister(t *testing.T) {
    }
 }
 
+func TestRegisterAdmin(t *testing.T) {
+
+	testRouter := SetupRouter(DB)
+		//create user first
+	idealCase := models.User{
+		FirstName: "registerfirstname",
+		LastName:  "registerlastname",
+		Email:     "register@test.com",
+		Password:  "registerPassword123$",		
+		IsAdmin: false,
+	}
+
+	testCases := []struct{
+		input          models.User
+		expected int
+	  }{
+		//missing email
+		{
+		  input: models.User{
+						FirstName: idealCase.FirstName,
+						LastName:  idealCase.LastName,
+						Password:  idealCase.Password,
+		  },
+		  expected: http.StatusUnprocessableEntity,
+		},
+		//missing password
+		{
+			input: models.User{
+						FirstName: idealCase.FirstName,
+						LastName:  idealCase.LastName,
+						Email:     idealCase.Email,
+			},
+			expected: http.StatusUnprocessableEntity,
+		},
+		//missing firstname or lastname
+		{
+			input: models.User{
+						LastName:  idealCase.LastName,
+						Email:     idealCase.Email,
+						Password:  idealCase.Password,
+			},
+			expected: http.StatusUnprocessableEntity,
+		},
+		//completely filled out
+		{
+			input: models.User{
+						  FirstName: idealCase.FirstName,
+						  LastName:  idealCase.LastName,
+						  Email:     idealCase.Email,
+						  Password:  idealCase.Password,
+			},
+			expected: http.StatusOK,
+		},
+	}
+   for _, testCase := range testCases {
+
+		data, _ := json.Marshal(testCase.input)
+
+		req, err := http.NewRequest("POST", "/api/v1/user/register-admin", bytes.NewBufferString(string(data)))
+		req.Header.Set("Content-Type", "application/json")
+
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		resp := httptest.NewRecorder()
+
+		testRouter.ServeHTTP(resp, req)
+		assert.Equal(t, testCase.expected, resp.Code)
+   }
+}
 
 func TestLogin(t *testing.T) {
 
