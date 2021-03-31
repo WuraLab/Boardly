@@ -20,6 +20,9 @@ type User struct {
 func (ctrl *User) Register(c *gin.Context) {
 	user := models.User{}
 
+	// set role to admin
+	user.IsAdmin = false
+
 	err := c.ShouldBindJSON(&user)
 	if err != nil {
 		log.Error(err)
@@ -49,6 +52,44 @@ func (ctrl *User) Register(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 	}
 
+}
+
+//Register admin user...
+func (ctrl *User) RegisterAdmin(c *gin.Context) {
+	user := models.User{}
+
+	err := c.ShouldBindJSON(&user)
+
+	// set role to admin
+	user.IsAdmin = true
+
+	if err != nil {
+		log.Error(err)
+	}
+    //check if there is a binding error or empty firstname or lastname
+	if err != nil || len(user.FirstName) == 0 || len(user.LastName) == 0{
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "All fields are required"})
+		return
+	}
+	hashPassword, err := HashPassword(user.Password)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError, gin.H{})
+		return
+	}
+	user.Password = hashPassword
+	rows, err := user.Create(ctrl.DB)
+
+	if err != nil && rows > 0 {
+		log.Error(err)
+		c.JSON(http.StatusConflict, gin.H{"message": "User already exists"})
+
+	} else if err == nil && rows == 1 {
+		c.JSON(http.StatusOK, gin.H{"message": "Successfully registered"})
+	} else {
+		log.Error(err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
+	}
 }
 
 //Login ...
