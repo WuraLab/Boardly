@@ -14,5 +14,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          path-to-signatures: 'signatures/version1/cla.json'
+          branch: signature
           url-to-cladocument: 'https://github.com/WuraLab/Boardly/blob/master/LICENSE'
           whitelist: bot
+          blockchain-storage-flag: false
