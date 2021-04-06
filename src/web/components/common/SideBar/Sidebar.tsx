@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
             margin: '0px',
             padding: '0px',
             top: '0px',
-            backgroundColor: '#FFFFFF'
+            backgroundColor: '#16093C'
         },
 
         navItem: {

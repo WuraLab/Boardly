@@ -36,8 +36,13 @@ const DashboardView: React.FC = () => {
     return (
         <>
             <div className={classes.root}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={3} className={classes.leftGrid}>
+                <Grid container spacing={0}>
+                    <Grid
+                        item
+                        xs={12}
+                        sm={3}
+                        className={classes.leftGrid}
+                        style={{ backgroundColor: '#16093C' }}>
                         <Sidebar />
                     </Grid>
 
