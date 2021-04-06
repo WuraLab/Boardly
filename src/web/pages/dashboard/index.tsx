@@ -17,18 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
             // top: '0px',
             // backgroundColor: '#FFFFFF'
             display: 'flex'
-        },
-        rightGrid: {
-            position: 'relative',
-            backgroundColor: '#FFFFFF',
-            height: '100vh',
-            border: '1px solid blue'
-        },
-        leftGrid: {
-            height: '100%',
-            backgroundColor: '#16093C',
-            padding: 0,
-            margin: 0
         }
     })
 );

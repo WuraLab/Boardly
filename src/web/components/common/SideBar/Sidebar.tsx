@@ -6,6 +6,9 @@ import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import Overview from '../../../public/overview.svg';
+import Employees from '../../../public/employees.svg';
+import Integrations from '../../../public/integrations.svg';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -22,6 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex'
+        },
+        icon: {
+            color: '#fff'
         },
         drawer: {
             [theme.breakpoints.up('sm')]: {
@@ -44,7 +50,9 @@ const useStyles = makeStyles((theme: Theme) =>
         // necessary for content to be below app bar
         toolbar: theme.mixins.toolbar,
         drawerPaper: {
-            width: drawerWidth
+            width: drawerWidth,
+            background: '#16093C',
+            color: '#fff'
         },
         content: {
             flexGrow: 1,
@@ -76,26 +84,20 @@ export const Sidebar: React.FC = (props: Props) => {
             <div className={classes.toolbar} />
             <Divider />
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {[
+                    { name: 'Overview', src: Overview },
+                    { name: 'Employees', src: Employees },
+                    { name: 'Integration', src: Integrations }
+                ].map((item, index) => (
+                    <ListItem button key={index}>
+                        <ListItemIcon className={classes.icon}>
+                            <img alt={item.name} src={item.src} />
                         </ListItemIcon>
-                        <ListItemText primary={text} />
+                        <ListItemText primary={item.name} />
                     </ListItem>
                 ))}
             </List>
             <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
         </div>
     );
 
@@ -103,51 +105,57 @@ export const Sidebar: React.FC = (props: Props) => {
 
     return (
         <>
-            <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        className={classes.menuButton}>
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Responsive drawer
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <nav className={classes.drawer} aria-label="mailbox folders">
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                <Hidden smUp implementation="css">
-                    <Drawer
-                        container={container}
-                        variant="temporary"
-                        anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                        open={mobileOpen}
-                        onClose={handleDrawerToggle}
-                        classes={{
-                            paper: classes.drawerPaper
-                        }}
-                        ModalProps={{
-                            keepMounted: true // Better open performance on mobile.
-                        }}>
-                        {drawer}
-                    </Drawer>
-                </Hidden>
-                <Hidden xsDown implementation="css">
-                    <Drawer
-                        classes={{
-                            paper: classes.drawerPaper
-                        }}
-                        variant="permanent"
-                        open>
-                        {drawer}
-                    </Drawer>
-                </Hidden>
-            </nav>
+            <div className={classes.leftGrid}>
+                <CssBaseline />
+
+                {/* top bar */}
+                <AppBar position="fixed" className={classes.appBar}>
+                    <Toolbar>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            className={classes.menuButton}>
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" noWrap>
+                            Responsive drawer
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+
+                {/* side navigation */}
+                <nav className={classes.drawer} aria-label="mailbox folders">
+                    {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+                    <Hidden smUp implementation="css">
+                        <Drawer
+                            container={container}
+                            variant="temporary"
+                            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                            open={mobileOpen}
+                            onClose={handleDrawerToggle}
+                            classes={{
+                                paper: classes.drawerPaper
+                            }}
+                            ModalProps={{
+                                keepMounted: true // Better open performance on mobile.
+                            }}>
+                            {drawer}
+                        </Drawer>
+                    </Hidden>
+                    <Hidden xsDown implementation="css">
+                        <Drawer
+                            classes={{
+                                paper: classes.drawerPaper
+                            }}
+                            variant="permanent"
+                            open>
+                            {drawer}
+                        </Drawer>
+                    </Hidden>
+                </nav>
+            </div>
         </>
     );
 };
