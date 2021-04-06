@@ -23,9 +23,11 @@ const useStyles = makeStyles((theme: Theme) =>
             border: '1px solid blue'
         },
         leftGrid: {
-            height: '100vh',
-            backgroundColor: '#FFFFFF',
-            border: '1px solid red',
+            height: '100%',
+            backgroundColor: '#16093C',
+            // border: '1px solid red',
+            // justifyContent: 'center',
+            // alignContent: 'center',
             padding: 0,
             margin: 0
         }
@@ -37,12 +39,7 @@ const DashboardView: React.FC = () => {
         <>
             <div className={classes.root}>
                 <Grid container spacing={0}>
-                    <Grid
-                        item
-                        xs={12}
-                        sm={3}
-                        className={classes.leftGrid}
-                        style={{ backgroundColor: '#16093C' }}>
+                    <Grid item xs={12} sm={3} className={classes.leftGrid}>
                         <Sidebar />
                     </Grid>
 

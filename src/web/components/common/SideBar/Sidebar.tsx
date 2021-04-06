@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Grid, Box } from '@material-ui/core';
+import { Grid, Box, Typography } from '@material-ui/core';
 import Logo from '../../../public/logo.svg';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -18,10 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
         },
 
         navItem: {
-            backgroundColor: '#FFFFFF',
+            // backgroundColor: '#FFFFFF',
+            color: '#ffff',
             border: '1px solid red',
-            padding: 0,
-            margin: 0
+            width: '100%'
         }
     })
 );
@@ -31,7 +31,7 @@ export const Sidebar: React.FC = () => {
     return (
         <>
             <div className={classes.root}>
-                <Grid container spacing={3}>
+                <Grid container>
                     <Grid item xs={12} sm={12}>
                         <Box>
                             <img
@@ -46,13 +46,22 @@ export const Sidebar: React.FC = () => {
                         </Box>
                     </Grid>
 
-                    <Grid item xs={12} sm={12} className={classes.navItem}>
+                    {/* <Grid item xs={12} sm={12} className={classes.navItem}>
                         <h1>Overview</h1>
                     </Grid>
 
                     <Grid item xs={12} sm={12} className={classes.navItem}>
                         <h1>Employees</h1>
-                    </Grid>
+                    </Grid> */}
+
+                    <Typography component="div">
+                        <Box fontSize="fontSize" className={classes.navItem} m={1}>
+                            dfdgdgdfgdfgd Overview
+                        </Box>
+                        <Box fontSize="fontSize" className={classes.navItem} m={1}>
+                            dfdgdgdfgdfgd Overview
+                        </Box>
+                    </Typography>
                 </Grid>
             </div>
         </>
