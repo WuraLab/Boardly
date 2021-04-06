@@ -21,7 +21,7 @@ func (u *User) Create(db *gorm.DB) (int, error) {
 	if u.Exists(db) {
 		return 1, errors.New("user exists")
 	}
-	result := db.Debug().Create(&u)
+	result := db.Create(&u)
 	return int(result.RowsAffected), result.Error
 }
 

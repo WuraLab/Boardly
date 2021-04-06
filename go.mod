@@ -3,6 +3,7 @@ module github.com/wuraLab/boardly
 go 1.15
 
 require (
+	github.com/appleboy/gin-jwt/v2 v2.6.4
 	github.com/denisenkom/go-mssqldb v0.9.0 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gin-contrib/cors v1.3.1
