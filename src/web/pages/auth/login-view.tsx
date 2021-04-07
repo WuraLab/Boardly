@@ -1,14 +1,12 @@
-import Head from 'next/head';
+import React from 'react';
+import Login from '../../components/login/Login';
 
-const Home: React.FC = () => {
+const LoginView: React.FC = () => {
     return (
-        <div>
-            <Head>
-                <title>Boardly</title>
-            </Head>
-            <div>Welcome to Boardly</div>
-        </div>
+        <>
+            <Login />
+        </>
     );
 };
 
-export default Home;
+export default LoginView;
