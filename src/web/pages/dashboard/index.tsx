@@ -8,15 +8,8 @@ import { Main } from '../../components/common/Main/Main';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            // flexGrow: 1,
-            // position: 'fixed',
-            // height: '100%',
-            // width: '100%',
-            // margin: '0px',
-            // padding: '0px',
-            // top: '0px',
-            // backgroundColor: '#FFFFFF'
-            display: 'flex'
+            display: 'flex',
+            backgroundColor: '#F7F8FC'
         }
     })
 );

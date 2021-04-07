@@ -1,5 +1,10 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -7,7 +12,9 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            display: 'flex'
+            display: 'flex',
+            backgroundColor: '#F7F8FC',
+            marginTop: '50px'
         },
         drawer: {
             [theme.breakpoints.up('sm')]: {
@@ -57,36 +64,100 @@ export const Main: React.FC = (props: Props) => {
         setMobileOpen(!mobileOpen);
     };
 
+    const bull = <span className={classes.bullet}>•</span>;
+
     return (
         <div className={classes.root}>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim
-                    praesent elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet.
-                    Semper risus in hendrerit gravida rutrum quisque non tellus. Convallis convallis
-                    tellus id interdum velit laoreet id donec ultrices. Odio morbi quis commodo odio
-                    aenean sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-                    integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate eu
-                    scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis imperdiet
-                    massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-                    arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi
-                    tincidunt. Lorem donec massa sapien faucibus et molestie ac.
-                </Typography>
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget
-                    nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim neque
-                    volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus.
-                    Purus sit amet volutpat consequat mauris. Elementum eu facilisis sed odio morbi.
-                    Euismod lacinia at quis risus sed vulputate odio. Morbi tincidunt ornare massa
-                    eget egestas purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-                    tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant morbi
-                    tristique senectus et. Adipiscing elit duis tristique sollicitudin nibh sit.
-                    Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-                    accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices
-                    sagittis orci a.
-                </Typography>
+                <Grid container spacing={1}>
+                    <Card className={classes.root}>
+                        <CardContent>
+                            <Typography
+                                className={classes.title}
+                                color="textSecondary"
+                                gutterBottom>
+                                Word of the Day
+                            </Typography>
+                            <Typography variant="h5" component="h2">
+                                be{bull}nev{bull}o{bull}lent
+                            </Typography>
+                            <Typography className={classes.pos} color="textSecondary">
+                                adjective
+                            </Typography>
+                            <Typography variant="body2" component="p">
+                                well meaning and kindly.
+                                <br />
+                                {'"a benevolent smile"'}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+
+                    <Card className={classes.root}>
+                        <CardContent>
+                            <Typography
+                                className={classes.title}
+                                color="textSecondary"
+                                gutterBottom>
+                                Word of the Day
+                            </Typography>
+                            <Typography variant="h5" component="h2">
+                                be{bull}nev{bull}o{bull}lent
+                            </Typography>
+                            <Typography className={classes.pos} color="textSecondary">
+                                adjective
+                            </Typography>
+                            <Typography variant="body2" component="p">
+                                well meaning and kindly.
+                                <br />
+                                {'"a benevolent smile"'}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+
+                    <Card className={classes.root}>
+                        <CardContent>
+                            <Typography
+                                className={classes.title}
+                                color="textSecondary"
+                                gutterBottom>
+                                Word of the Day
+                            </Typography>
+                            <Typography variant="h5" component="h2">
+                                be{bull}nev{bull}o{bull}lent
+                            </Typography>
+                            <Typography className={classes.pos} color="textSecondary">
+                                adjective
+                            </Typography>
+                            <Typography variant="body2" component="p">
+                                well meaning and kindly.
+                                <br />
+                                {'"a benevolent smile"'}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                    <Card className={classes.root}>
+                        <CardContent>
+                            <Typography
+                                className={classes.title}
+                                color="textSecondary"
+                                gutterBottom>
+                                Word of the Day
+                            </Typography>
+                            <Typography variant="h5" component="h2">
+                                be{bull}nev{bull}o{bull}lent
+                            </Typography>
+                            <Typography className={classes.pos} color="textSecondary">
+                                adjective
+                            </Typography>
+                            <Typography variant="body2" component="p">
+                                well meaning and kindly.
+                                <br />
+                                {'"a benevolent smile"'}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
             </main>
         </div>
     );
