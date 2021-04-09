@@ -9,7 +9,7 @@ import Badge from '@material-ui/core/Badge';
 import Box from '@material-ui/core/Box';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-// import MenuIcon from '@material-ui/icons/Menu';
+import MenuIcon from '@material-ui/icons/Menu';
 // import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 // import MailIcon from '@material-ui/icons/Mail';
@@ -137,6 +137,13 @@ export default function Topbar(props: TopBarProps) {
         <div className={classes.grow}>
             <AppBar position="static" className={classes.appBar} color="transparent">
                 <Toolbar className={classes.customizeToolbar}>
+                    <IconButton
+                        edge="start"
+                        className={classes.menuButton}
+                        color="inherit"
+                        aria-label="menu">
+                        <MenuIcon />
+                    </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>
                         {dashboardTitle}
                     </Typography>
