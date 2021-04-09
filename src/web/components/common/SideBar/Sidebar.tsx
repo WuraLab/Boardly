@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import TopBar from '../../common/TopBar/Topbar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -157,8 +161,23 @@ export const Sidebar: React.FC = (props: Props) => {
                 <CssBaseline />
 
                 {/* top bar */}
-                <AppBar position="fixed" className={classes.appBar}>
+                {/* <AppBar position="fixed" className={classes.appBar}>
                     <TopBar dashboardTitle={dashboardTitle} />
+                </AppBar> */}
+                <AppBar position="fixed" className={classes.appBar}>
+                    <Toolbar>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            className={classes.menuButton}>
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" noWrap className={classes.title}>
+                            {dashboardTitle}
+                        </Typography>
+                    </Toolbar>
                 </AppBar>
 
                 {/* side navigation */}
