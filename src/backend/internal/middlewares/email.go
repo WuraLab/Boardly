@@ -2,11 +2,13 @@ package middlewares
 
 import (
 	"os"
+	"time"
+	"crypto/tls"
 	"log"
 	"github.com/xhit/go-simple-mail/v2"
 )
 
-func sendEmail(sender_email string, subject string, html_body string) {
+func SendEmail(sender_email string, subject string, html_body string) {
 	server := mail.NewSMTPClient()
 
 	// SMTP Server
@@ -44,7 +46,7 @@ func sendEmail(sender_email string, subject string, html_body string) {
 
 
 	email := mail.NewMSG()
-	email.SetFrom("Test").
+	email.SetFrom("Boardly").
 		AddTo(sender_email).
 		SetSubject(subject)
 

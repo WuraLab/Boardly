@@ -86,3 +86,7 @@ func CheckPasswordHash(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
 }
+
+func (ctrl *User) EmailValidation(c *gin.Context) (*models.User,error) {
+	
+}
