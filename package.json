@@ -4,8 +4,8 @@
   "main": "src/web/pages",
   "private": true,
   "scripts": {
-    "dev": "cd src/web && next dev",
-    "build": "next build",
+    "dev": "next dev src/web",
+    "build": "next build src/web",
     "start": "next start"
   },
   "dependencies": {
