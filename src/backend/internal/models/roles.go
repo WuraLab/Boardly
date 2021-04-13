@@ -6,7 +6,7 @@ import (
 
 type Role struct {
 	Base
-	Name string
+	role string
 }
 
 //Create this create the Role struct

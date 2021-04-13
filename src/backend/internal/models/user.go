@@ -13,7 +13,6 @@ type User struct {
 	LastName  string `gorm:"column:lastname;type:varchar(255);not null" json:"lastname" binding:""`
 	Email     string `gorm:"column:email;unique;type:varchar(255);not null" json:"email" binding:"required,email"`
 	Password  string `gorm:"column:password;type:varchar(255);not null" json:"password" binding:"required"`
-	IsAdmin   bool `gorm:"column:isAdmin;type:BOOLEAN" json:"isAdmin"`
 }
 
 //Create This create the user struct
