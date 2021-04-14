@@ -2,8 +2,8 @@ FROM node:alpine AS builder
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY . /app
-RUN yarn install --frozen-lockfile
-RUN yarn build
+RUN npm install
+RUN npm run build
 
 
 FROM node:alpine AS runner
@@ -25,4 +25,4 @@ USER nextjs
 
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
