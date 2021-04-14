@@ -29,7 +29,8 @@ import Integrations from '../../../public/integrations.svg';
 import DashboardLogo from '../../../public/dashboardLogo.svg';
 import Card from '../../../components/Card/Card';
 import CreateEmployee from '../../../components/createEmployee/createEmployee';
-import DataTable from '../../../components/DataTable/DataTable';
+import { DataTable } from '../../../components/DataTable/DataTable';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -395,9 +396,9 @@ export default function Main() {
                 <Box ml={0} mt={6}>
                     <CreateEmployee />
                 </Box>
-                <Box ml={0} mt={6}>
-                    <DataTable />
-                </Box>
+                {/* <Box ml={0} mt={6}> */}
+                <DataTable />
+                {/* </Box> */}
             </main>
         </div>
     );
