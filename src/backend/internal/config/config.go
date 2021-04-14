@@ -27,6 +27,12 @@ type Server struct {
 	JWT  string `mapstructure:"JWT_SECRET"`
 }
 
+type Mail struct {
+	Email        string `mapstructure:"EMAIL_USER"`
+	Password     string `mapstructure:"EMAIL_Password"`
+	SetEmailFrom string `mapstructure:"SET_EMAIL_FROM"`
+}
+
 func LoadConfig(configFile string, paths ...string) (Config, error) {
 	config := Config{}
 	viper.SetConfigName(configFile)

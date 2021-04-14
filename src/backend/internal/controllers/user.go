@@ -5,9 +5,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
+	"github.com/wuraLab/boardly/src/backend/internal/commons"
 	"github.com/wuraLab/boardly/src/backend/internal/errors"
 	"github.com/wuraLab/boardly/src/backend/internal/models"
-	"github.com/wuraLab/boardly/src/backend/internal/services"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
@@ -109,24 +109,24 @@ func (ctrl *User) ForgotPassword(c *gin.Context) {
 	}
 
 	// Generate the token that will be used to reset the password
-	resetToken, _ := services.GenerateNonAuthToken(storedCreds.Email)
+	// resetToken, _ := services.GenerateNonAuthToken(storedCreds.Email)
 
-	 // The link to password the password reset
-	 link := "http://localhost:5000/api/v1/password-reset?reset_token=" + resetToken
-	 // Define the body of the email
-	 body := "Here is your reset <a href='" + link + "'>link</a>"
-	 html := "<strong>" + body + "</strong>"
- 
-	 // Initialize email sendout
-	 email := services.SendMail("Reset Password", body, storedCreds.Email, html, storedCreds.FirstName)
- 
-	 // If email was sent, return 200 status code
-	 if email == true {
+	// The link to password the password reset
+	link := "http://localhost:5000/api/v1/password-reset?reset_token="
+	// Define the body of the email
+	body := "Here is your reset <a href='" + link + "'>link</a>"
+	html := "<strong>" + body + "</strong>"
+
+	// Initialize email sendout
+	email := commons.SendMail("Reset Password", storedCreds.Email, html)
+
+	// If email was sent, return 200 status code
+	if email == true {
 		c.AbortWithStatusJSON(200, gin.H{"messsage": "Check mail"})
 		return
-	 // Return 500 status when something wrong happened
-	 } else {
-		 c.AbortWithStatusJSON(500, gin.H{"message": "An issue occurred while sending reset instructions email"})
-		 return
-	 }
+		// Return 500 status when something wrong happened
+	} else {
+		c.AbortWithStatusJSON(500, gin.H{"message": "An issue occurred while sending reset instructions email"})
+		return
+	}
 }
