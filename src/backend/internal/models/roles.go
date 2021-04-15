@@ -6,7 +6,7 @@ import (
 
 type Role struct {
 	Base
-	role string
+	Name  string `gorm:"column:role;type:varchar(255)"  json:"role" binding:""`
 }
 
 //Create this create the Role struct

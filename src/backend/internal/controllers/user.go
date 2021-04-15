@@ -6,7 +6,6 @@ import (
 	"github.com/wuraLab/boardly/src/backend/internal/errors"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
-	"fmt"
 	"github.com/wuraLab/boardly/src/backend/internal/models"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -54,23 +53,24 @@ func (ctrl *User) Register(c *gin.Context) {
 
 //Register admin user...
 func (ctrl *User) RegisterAdmin(c *gin.Context) {
-	user := models.Admin{}
+	user := models.User{}
 
 	err := c.ShouldBindJSON(&user)
 
 	if err != nil {
 		log.Error(err)
-		fmt.Println(user)
-
-		//check if there is a binding error or empty firstname or lastname		
-		if len(user.FirstName) == 0 || len(user.LastName) == 0{
-			c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "All fields required"})
-			return
-		}
-		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "some error ocurred"})
-		return
 	}
-    
+
+	if len(user.Role.Name) == 0 {
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "Role is required"})
+		return
+	} 
+
+    //check if there is a binding error or empty firstname or lastname
+	if err != nil || len(user.FirstName) == 0 || len(user.LastName) == 0{
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "All fields are required"})
+		return	
+	}
 	hashPassword, err := HashPassword(user.Password)
 	if err != nil {
 		log.Error(err)

@@ -31,16 +31,6 @@ func Migrate(db *gorm.DB) error {
 				return tx.Migrator().DropTable("role")
 			},
 		},
-		// Admin table
-		{
-			ID: time.Now().UTC().String(),
-			Migrate: func(tx *gorm.DB) error {
-				return tx.AutoMigrate(&models.Admin{})
-			},
-			Rollback: func(tx *gorm.DB) error {
-				return tx.Migrator().DropTable("admin")
-			},
-		},
 	})
 	return m.Migrate()
 }
