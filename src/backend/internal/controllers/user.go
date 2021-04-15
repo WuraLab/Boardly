@@ -61,8 +61,11 @@ func (ctrl *User) RegisterAdmin(c *gin.Context) {
 		log.Error(err)
 	}
 
-	if len(user.Role.Name) == 0 {
-		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "Role is required"})
+	// user.UserRole points to user.Role.UserRole
+	// this is known as a field promotion: where all the nested anonymous
+	// struct fields are automatically available on the parent struct. cool:)  
+	if len(user.UserRole) == 0 {
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "'Role' is required"})
 		return
 	} 
 
