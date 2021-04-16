@@ -8,7 +8,7 @@ import (
 )
 
 func TestRole(t *testing.T) {
-	r := &models.Role{Name: "Employee"}
+	r := &models.Role{UserRole: "Employee"}
 	t.Run("Create", func(t *testing.T) {
 		rows, err := r.Create(DB)
 		assert.NoError(t, err, "Error creating role in DB")

@@ -146,7 +146,7 @@ func TestRegisterAdmin(t *testing.T) {
 		LastName:  "registerlastname",
 		Email:     "register@test.com",
 		Password:  "registerPassword123$",		
-		IsAdmin: false,
+		Role:      models.Role{UserRole: "Employee"},
 	}
 
 	testCases := []struct{
@@ -159,6 +159,7 @@ func TestRegisterAdmin(t *testing.T) {
 						FirstName: idealCase.FirstName,
 						LastName:  idealCase.LastName,
 						Password:  idealCase.Password,
+						Role:  	   models.Role{UserRole: idealCase.UserRole},
 		  },
 		  expected: http.StatusUnprocessableEntity,
 		},
@@ -168,6 +169,7 @@ func TestRegisterAdmin(t *testing.T) {
 						FirstName: idealCase.FirstName,
 						LastName:  idealCase.LastName,
 						Email:     idealCase.Email,
+						Role:	   models.Role{UserRole: idealCase.UserRole},
 			},
 			expected: http.StatusUnprocessableEntity,
 		},
@@ -177,16 +179,28 @@ func TestRegisterAdmin(t *testing.T) {
 						LastName:  idealCase.LastName,
 						Email:     idealCase.Email,
 						Password:  idealCase.Password,
+						Role: 	   models.Role{UserRole: idealCase.UserRole},
+			},
+			expected: http.StatusUnprocessableEntity,
+		},
+		//missing role
+		{
+			input: models.User{
+						FirstName: idealCase.FirstName,
+						LastName:  idealCase.LastName,
+						Email:     idealCase.Email,
+						Password:  idealCase.Password,
 			},
 			expected: http.StatusUnprocessableEntity,
 		},
 		//completely filled out
 		{
 			input: models.User{
-						  FirstName: idealCase.FirstName,
-						  LastName:  idealCase.LastName,
-						  Email:     idealCase.Email,
-						  Password:  idealCase.Password,
+						FirstName: idealCase.FirstName,
+						LastName:  idealCase.LastName,
+						Email:     idealCase.Email,
+						Password:  idealCase.Password,
+						Role: 	 models.Role{UserRole: idealCase.UserRole},
 			},
 			expected: http.StatusOK,
 		},
