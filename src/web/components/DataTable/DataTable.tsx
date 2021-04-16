@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
 
 import { forwardRef } from 'react';
@@ -19,6 +19,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import image from '../../public/logo.svg';
+import { InferGetStaticPropsType } from 'next';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -40,9 +41,76 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-export const DataTable: FC = () => {
-    // const classes = useStyles();
+type User = {
+    user_id: string;
+    email: string;
+    user_name: string;
+    password: string;
+};
+
+export const getStaticProps = async () => {
+    const res = await fetch('https://.../posts');
+    const users: User[] = await res.json();
+
+    return {
+        revalidate: 10, // revalidate this data , from the backend every 10 seconds
+        props: {
+            users
+        }
+    };
+};
+
+export const DataTable: React.FC<{ users: User[] }> = (props) => {
+    // const { users } = props;
     const [dataStore, setDataStore] = useState([]);
+    // const classes = useStyles();
+
+    useEffect(() => {
+        setDataStore([
+            {
+                avatar: { image },
+                name: 'Mehmet',
+                surname: 'Baran',
+                birthYear: 1987,
+                birthCity: 63
+            },
+            {
+                avatar: { image },
+                name: 'Zerya Betül',
+                surname: 'Baran',
+                birthYear: 2017,
+                birthCity: 34
+            },
+            {
+                avatar: { image },
+                name: 'Mehmet',
+                surname: 'Baran',
+                birthYear: 1987,
+                birthCity: 63
+            },
+            {
+                avatar: { image },
+                name: 'Zerya Betül',
+                surname: 'Baran',
+                birthYear: 2017,
+                birthCity: 34
+            },
+            {
+                avatar: { image },
+                name: 'Mehmet',
+                surname: 'Baran',
+                birthYear: 1987,
+                birthCity: 63
+            },
+            {
+                avatar: { image },
+                name: 'Zerya Betül',
+                surname: 'Baran',
+                birthYear: 2017,
+                birthCity: 34
+            }
+        ]);
+    }, []);
 
     return (
         <div style={{ maxWidth: '100%' }}>
@@ -79,50 +147,7 @@ export const DataTable: FC = () => {
                         field: 'birthCity'
                     }
                 ]}
-                data={[
-                    {
-                        avatar: { image },
-                        name: 'Mehmet',
-                        surname: 'Baran',
-                        birthYear: 1987,
-                        birthCity: 63
-                    },
-                    {
-                        avatar: { image },
-                        name: 'Zerya Betül',
-                        surname: 'Baran',
-                        birthYear: 2017,
-                        birthCity: 34
-                    },
-                    {
-                        avatar: { image },
-                        name: 'Mehmet',
-                        surname: 'Baran',
-                        birthYear: 1987,
-                        birthCity: 63
-                    },
-                    {
-                        avatar: { image },
-                        name: 'Zerya Betül',
-                        surname: 'Baran',
-                        birthYear: 2017,
-                        birthCity: 34
-                    },
-                    {
-                        avatar: { image },
-                        name: 'Mehmet',
-                        surname: 'Baran',
-                        birthYear: 1987,
-                        birthCity: 63
-                    },
-                    {
-                        avatar: { image },
-                        name: 'Zerya Betül',
-                        surname: 'Baran',
-                        birthYear: 2017,
-                        birthCity: 34
-                    }
-                ]}
+                data={dataStore}
                 options={{
                     search: true
                 }}
@@ -130,73 +155,3 @@ export const DataTable: FC = () => {
         </div>
     );
 };
-
-// export const DataTable: FC = () => {
-//     // const classes = useStyles();
-//     const [dataStore, setDataStore] = useState([{ name: 'Jon', job: 'Software Dev', age: 29 }]);
-
-//     return (
-//         <div style={{ maxWidth: '100%' }}>
-//             <MaterialTable
-//                 columns={[
-//                     {
-//                         title: 'Name',
-//                         field: 'name'
-//                     },
-//                     {
-//                         title: 'Occupation',
-//                         field: 'job'
-//                     },
-//                     {
-//                         title: 'Age',
-//                         field: 'age',
-//                         type: 'numeric'
-//                     }
-//                 ]}
-//                 data={dataStore}
-//                 title="Material-Table Demo"
-//                 icons={{
-//                     Clear: ((() => <DeleteIcon />) as unknown) as React.ForwardRefExoticComponent<
-//                         React.RefAttributes<SVGSVGElement>
-//                     >,
-//                     Search: ((() => <SearchIcon />) as unknown) as React.ForwardRefExoticComponent<
-//                         React.RefAttributes<SVGSVGElement>
-//                     >,
-//                     ResetSearch: ((() => (
-//                         <DeleteIcon />
-//                     )) as unknown) as React.ForwardRefExoticComponent<
-//                         React.RefAttributes<SVGSVGElement>
-//                     >
-//                 }}
-//                 actions={[
-//                     {
-//                         icon: () => <SaveIcon />,
-//                         tooltip: 'Save User',
-//                         onClick: (event, rowData) =>
-//                             alert('You saved ' + ((rowData as unknown) as Column).name)
-//                     }
-//                 ]}
-//                 components={{
-//                     // eslint-disable-next-line react/display-name
-//                     Action: (props) => (
-//                         <Button
-//                             onClick={(event) => props.action.onClick(event, props.data)}
-//                             color="primary"
-//                             variant="text"
-//                             style={{ textTransform: 'none' }}
-//                             size="small">
-//                             Save
-//                         </Button>
-//                     )
-//                 }}
-//                 options={{
-//                     headerStyle: {
-//                         backgroundColor: '#01579b',
-//                         color: '#FFF'
-//                     },
-//                     search: true
-//                 }}
-//             />
-//         </div>
-//     );
-// };
