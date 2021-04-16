@@ -4,9 +4,12 @@
   "main": "src/web/pages",
   "private": true,
   "scripts": {
-    "dev": "cd src/web && next dev",
-    "build": "next build",
+    "dev": "next dev src/web",
+    "build": "next build src/web",
     "start": "next start"
+  },
+  "engines": {
+    "node": ">=0.14.1 <15"
   },
   "dependencies": {
     "@fontsource/poppins": "^4.2.2",

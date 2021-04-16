@@ -10,3 +10,23 @@ services:
       POSTGRES_USER: "$DB_USER"
       POSTGRES_PASSWORD: "$DB_PASSWORD"
       POSTGRES_DB: "$DB_NAME"
+  api:
+    restart: always
+    build: 
+      context: .
+      dockerfile: src/backend/Dockerfile
+    volumes:
+      - .env:/.env
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+  web:
+    restart: always
+    build: 
+      context: .
+      dockerfile: src/web/Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
