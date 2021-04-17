@@ -6,7 +6,9 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
 import AddEmployee from '../../public/addEmployee.svg';
-import { Typography } from '@material-ui/core';
+import Logo from '../../public/logo.svg';
+import Button from '@material-ui/core/Button';
+import { FormControl, Grid, Typography, Box, Input } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -65,8 +67,58 @@ export default function CreateEmployeeModal() {
                 }}>
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <h2 id="transition-modal-title">Transition modal</h2>
-                        <p id="transition-modal-description">react-transition-group animates me.</p>
+                        <div className={classes.root}>
+                            <Grid container spacing={3}>
+                                <Box className={classes.forgotPassHeader}>
+                                    <p>Send Email Invite</p>
+                                </Box>
+
+                                <Box m="10%" mt="20%">
+                                    <Typography variant="h6" gutterBottom>
+                                        <p>Enter E-mail address</p>
+                                    </Typography>
+
+                                    <form noValidate autoComplete="off">
+                                        <FormControl fullWidth>
+                                            <Input
+                                                placeholder="user@email.com"
+                                                fullWidth
+                                                style={{
+                                                    border: '0.2px solid black',
+                                                    width: '100%',
+                                                    borderRadius: '10px',
+                                                    backgroundColor: '#F3F3F3',
+                                                    padding: '10px'
+                                                }}
+                                            />
+                                        </FormControl>
+                                    </form>
+
+                                    <Box mt="10%">
+                                        <Box
+                                            display="flex"
+                                            justifyContent="center"
+                                            m={1}
+                                            p={1}
+                                            bgcolor="#FFFFFF">
+                                            <Button
+                                                variant="outlined"
+                                                style={{
+                                                    width: '100%',
+                                                    backgroundColor: '#22AD80',
+                                                    color: '#ffff',
+                                                    fontSize: '12px',
+                                                    fontWeight: 'bold',
+                                                    padding: '12px',
+                                                    borderRadius: '10px'
+                                                }}>
+                                                Send Invite
+                                            </Button>
+                                        </Box>
+                                    </Box>
+                                </Box>
+                            </Grid>
+                        </div>
                     </div>
                 </Fade>
             </Modal>

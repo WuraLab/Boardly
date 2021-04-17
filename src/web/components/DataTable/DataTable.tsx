@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
-
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { forwardRef } from 'react';
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -18,8 +18,10 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import image from '../../public/logo.svg';
-import { InferGetStaticPropsType } from 'next';
+// import image from '../../public/logo.svg';
+// import { InferGetStaticPropsType } from 'next';
+
+const useStyles = makeStyles((theme: Theme) => createStyles({}));
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -63,51 +65,45 @@ export const getStaticProps = async () => {
 export const DataTable: React.FC<{ users: User[] }> = (props) => {
     // const { users } = props;
     const [dataStore, setDataStore] = useState([]);
-    // const classes = useStyles();
+    const classes = useStyles();
 
     useEffect(() => {
         setDataStore([
             {
-                avatar: { image },
-                name: 'Mehmet',
-                surname: 'Baran',
-                birthYear: 1987,
-                birthCity: 63
+                profile: 'https://randomuser.me/api/portraits/men/1.jpg',
+                name: 'Nextwebb ',
+                date: 1987,
+                priority: 63
             },
             {
-                avatar: { image },
-                name: 'Zerya Betül',
-                surname: 'Baran',
-                birthYear: 2017,
-                birthCity: 34
+                profile: 'https://randomuser.me/api/portraits/men/2.jpg',
+                name: 'Adefemi UI',
+                date: 2017,
+                priority: 34
             },
             {
-                avatar: { image },
-                name: 'Mehmet',
-                surname: 'Baran',
-                birthYear: 1987,
-                birthCity: 63
+                profile: 'https://randomuser.me/api/portraits/men/3.jpg',
+                name: 'Seun Mehmet',
+                date: 1987,
+                priority: 63
             },
             {
-                avatar: { image },
-                name: 'Zerya Betül',
-                surname: 'Baran',
-                birthYear: 2017,
-                birthCity: 34
+                profile: 'https://randomuser.me/api/portraits/men/4.jpg',
+                name: 'Robogeek LASU',
+                date: 2017,
+                priority: 34
             },
             {
-                avatar: { image },
-                name: 'Mehmet',
-                surname: 'Baran',
-                birthYear: 1987,
-                birthCity: 63
+                profile: 'https://randomuser.me/api/portraits/men/5.jpg',
+                name: 'fawas kareem',
+                date: 1987,
+                priority: 63
             },
             {
-                avatar: { image },
-                name: 'Zerya Betül',
-                surname: 'Baran',
-                birthYear: 2017,
-                birthCity: 34
+                profile: 'https://randomuser.me/api/portraits/men/6.jpg',
+                name: 'Israel  AWS',
+                date: 2017,
+                priority: 34
             }
         ]);
     }, []);
@@ -116,35 +112,47 @@ export const DataTable: React.FC<{ users: User[] }> = (props) => {
         <div style={{ maxWidth: '100%' }}>
             <MaterialTable
                 icons={tableIcons}
-                title="Basic Search Preview"
+                title="Employee Datatable"
                 columns={[
                     {
-                        title: 'Avatar',
-                        field: 'avatar',
+                        title: 'Employee Details',
+                        field: 'profile',
                         // eslint-disable-next-line react/display-name
                         render: (rowData) => (
                             <img
                                 alt="avatar"
                                 style={{ height: 36, borderRadius: '50%' }}
-                                src={rowData.avatar}
+                                src={rowData.profile}
                             />
-                        )
+                        ),
+                        headerStyle: {
+                            color: '#9FA2B4',
+                            fontWeight: 'bold'
+                        }
                     },
                     {
-                        title: 'Name',
-                        field: 'name'
+                        title: 'Employee Name',
+                        field: 'name',
+                        headerStyle: {
+                            color: '#9FA2B4',
+                            fontWeight: 'bold'
+                        }
                     },
                     {
-                        title: 'Surname',
-                        field: 'surname'
+                        title: 'Date',
+                        field: 'date',
+                        headerStyle: {
+                            color: '#9FA2B4',
+                            fontWeight: 'bold'
+                        }
                     },
                     {
-                        title: 'Birth Year',
-                        field: 'birthYear'
-                    },
-                    {
-                        title: 'Birth City',
-                        field: 'birthCity'
+                        title: 'Priority',
+                        field: 'priority',
+                        headerStyle: {
+                            color: '#9FA2B4',
+                            fontWeight: 'bold'
+                        }
                     }
                 ]}
                 data={dataStore}
