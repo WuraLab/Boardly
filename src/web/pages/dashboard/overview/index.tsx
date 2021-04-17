@@ -27,7 +27,7 @@ import Overview from '../../../public/overview.svg';
 import Employees from '../../../public/employees.svg';
 import Integrations from '../../../public/integrations.svg';
 import DashboardLogo from '../../../public/dashboardLogo.svg';
-import Card from '../../../components/Card/Card';
+import { Card } from '../../../components/Card/Card';
 import CreateEmployee from '../../../components/createEmployee/createEmployee';
 import { DataTable } from '../../../components/DataTable/DataTable';
 
@@ -201,19 +201,23 @@ export default function Main() {
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
 
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
     };
 
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };

@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function Card() {
+// export default function Card() {
+export const Card: React.FC = () => {
     const classes = useStyles();
 
     return (
@@ -68,4 +69,4 @@ export default function Card() {
             </Grid>
         </div>
     );
-}
+};

@@ -1,6 +1,7 @@
-import React, { FC, useEffect, useState } from 'react';
+/* eslint-disable react/display-name */
+import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+// import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { forwardRef } from 'react';
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -21,7 +22,7 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 // import image from '../../public/logo.svg';
 // import { InferGetStaticPropsType } from 'next';
 
-const useStyles = makeStyles((theme: Theme) => createStyles({}));
+// const useStyles = makeStyles((theme: Theme) => createStyles({}));
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -62,10 +63,11 @@ export const getStaticProps = async () => {
     };
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const DataTable: React.FC<{ users: User[] }> = (props) => {
     // const { users } = props;
     const [dataStore, setDataStore] = useState([]);
-    const classes = useStyles();
+    // const classes = useStyles();
 
     useEffect(() => {
         setDataStore([

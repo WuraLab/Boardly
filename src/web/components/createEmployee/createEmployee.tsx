@@ -6,7 +6,6 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
 import AddEmployee from '../../public/addEmployee.svg';
-import Logo from '../../public/logo.svg';
 import Button from '@material-ui/core/Button';
 import { FormControl, Grid, Typography, Box, Input } from '@material-ui/core';
 
@@ -34,14 +33,17 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export default function CreateEmployeeModal() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
 
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     const handleOpen = () => {
         setOpen(true);
     };
 
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     const handleClose = () => {
         setOpen(false);
     };
