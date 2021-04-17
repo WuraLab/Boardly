@@ -6,19 +6,11 @@
 
 To run Boardly, clone the repo and run 
 
-- Start the database via docker-compose
+- Start the database, api and web.
 
 ```
 docker-compose up -d
 ```
-
-- Run boardly 
-
-````
-go run src/backend/cmd/boardly.go
-````
-
-
 
 ### Testing Locally
 
@@ -26,6 +18,7 @@ go run src/backend/cmd/boardly.go
 
 ````
 Start the database via docker-compose
+$ docker-compose up db
 ````
 
 - Make sure `.test.env` exists with the right env vars.

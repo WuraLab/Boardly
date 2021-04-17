@@ -4,7 +4,7 @@ import React from 'react';
 import { FormControl } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import { BootstrapInput } from './BootstrapInput';
-import { useStyles } from './Style';
+import { useStyles } from '../create-admin/Style';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
