@@ -1,22 +1,30 @@
 package common
 
 import (
-	"os"
-	"time"
 	"crypto/tls"
 	"log"
-	"github.com/xhit/go-simple-mail/v2"
+	"os"
+	"time"
+	"github.com/joho/godotenv"
+	mail "github.com/xhit/go-simple-mail/v2"
 )
 
-func SendEmail(sender_email string, subject string, html_body string) {
+func SendMail(subject string, senderEmail string, htmlBody string) {
 	server := mail.NewSMTPClient()
+
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
 
 	// SMTP Server
 	server.Host = "smtp.gmail.com"
 	server.Port = 587
-	server.Username = os.Getenv("EMAIL_HOST")
+	server.Username = os.Getenv("EMAIL_USER")
 	server.Password = os.Getenv("EMAIL_PASSWORD")
 	server.Encryption = mail.EncryptionSTARTTLS
+	SetEmailFrom := os.Getenv("SetEmailFrom")
 
 	// Since v2.3.0 you can specified authentication type:
 	// - PLAIN (default)
@@ -38,19 +46,17 @@ func SendEmail(sender_email string, subject string, html_body string) {
 	server.TLSConfig = &tls.Config{InsecureSkipVerify: true}
 
 	// SMTP client
-	smtpClient,err := server.Connect()
+	smtpClient, err := server.Connect()
 
-	if err != nil{
+	if err != nil {
 		log.Fatal(err)
 	}
 
-
+	// New email simple html with inline and CC
 	email := mail.NewMSG()
-	email.SetFrom("Boardly").
-		AddTo(sender_email).
-		SetSubject(subject)
+	email.SetFrom(SetEmailFrom).AddTo(senderEmail).SetSubject(htmlBody)
 
-	email.SetBody(mail.TextHTML, html_body)
+	email.SetBody(mail.TextHTML, htmlBody)
 
 	// Call Send and pass the client
 	err = email.Send(smtpClient)
