@@ -369,30 +369,43 @@ export default function Main() {
                 </div>
                 <Divider />
                 <List>
-                    {[
-                        { name: 'Overview', src: Overview, selected: selectedSidebarItem },
-                        { name: 'Employees', src: Employees },
-                        { name: 'Integration', src: Integrations }
-                    ].map((item, index) => (
-                        <ListItem
-                            button
-                            key={index}
-                            classes={{ root: classes.listItem, selected: classes.selected }}
-                            selected={item.selected}
-                            onClick={() => handleSideBarNaviagtion(item.name)}>
-                            <ListItemIcon className={classes.icon}>
-                                <img alt={item.name} src={item.src} />
-                            </ListItemIcon>
-                            <ListItemText primary={item.name} />
-                        </ListItem>
-                    ))}
+                    <ListItem
+                        button
+                        classes={{ root: classes.listItem, selected: classes.selected }}
+                        selected={selectedSidebarItem}
+                        onClick={() => handleSideBarNaviagtion('Overview')}>
+                        <ListItemIcon className={classes.icon}>
+                            <img alt={'Overview'} src={Overview} />
+                        </ListItemIcon>
+                        <ListItemText primary={'Overview'} />
+                    </ListItem>
+                    <ListItem
+                        button
+                        classes={{ root: classes.listItem, selected: classes.selected }}
+                        // selected={selectedSidebarItem}
+                        onClick={() => handleSideBarNaviagtion('Employees')}>
+                        <ListItemIcon className={classes.icon}>
+                            <img alt={'Employees'} src={Employees} />
+                        </ListItemIcon>
+                        <ListItemText primary={'Employees'} />
+                    </ListItem>
+                    <ListItem
+                        button
+                        classes={{ root: classes.listItem, selected: classes.selected }}
+                        // selected={selectedSidebarItem}
+                        onClick={() => handleSideBarNaviagtion('Integration')}>
+                        <ListItemIcon className={classes.icon}>
+                            <img alt={'Integration'} src={Integrations} />
+                        </ListItemIcon>
+                        <ListItemText primary={'Integration'} />
+                    </ListItem>
                 </List>
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <Typography variant="h6" noWrap className={classes.title}>
-                    {dashboardTitle}
-                </Typography>
+                {/* <Typography variant="h6" noWrap className={classes.title}> */}
+                {/* {dashboardTitle} */}
+                {/* </Typography> */}
             </main>
         </div>
     );
