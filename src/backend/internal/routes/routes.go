@@ -27,6 +27,7 @@ func SetupRouter(DB *gorm.DB, config *config.Config) *gin.Engine {
 		}
 		api.POST("/user/register", userController.Register)
 		api.POST("/user/login", authMiddleware.LoginHandler)
+		api.POST("/user/forgot-password", userController.ForgotPassword)
 	}
 	auth := r.Group("/api/auth")
 	auth.Use(authMiddleware.MiddlewareFunc())
