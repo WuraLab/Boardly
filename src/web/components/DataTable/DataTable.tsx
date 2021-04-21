@@ -64,7 +64,8 @@ export const getStaticProps = async () => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const DataTable: React.FC<{ users: User[] }> = (props) => {
+// export const DataTable: React.FC<{ users: User[] }> = (props) => {
+export const DataTable: React.FC = () => {
     // const { users } = props;
     const [dataStore, setDataStore] = useState([]);
     // const classes = useStyles();
