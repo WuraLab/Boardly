@@ -1,0 +1,1 @@
+p, admin, /api/v1/auth/refresh-token, *

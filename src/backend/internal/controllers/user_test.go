@@ -3,11 +3,12 @@ package controllers_test
 import (
 	"bytes"
 	"encoding/json"
-	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	log "github.com/sirupsen/logrus"
 
 	"github.com/wuraLab/boardly/src/backend/internal/controllers"
 	"github.com/wuraLab/boardly/src/backend/internal/middlewares"
@@ -17,10 +18,11 @@ import (
 	"github.com/stretchr/testify/assert"
 	"gorm.io/gorm"
 )
+
 type LoginResult struct {
-    Code      int             `json:"code"`
-    Expire    string          `json:"expire"`
-    Token     string           `json:"token"`
+	Code   int    `json:"code"`
+	Expire string `json:"expire"`
+	Token  string `json:"token"`
 }
 
 const (
@@ -32,16 +34,15 @@ func SetupRouter(DB *gorm.DB) *gin.Engine {
 	//Start the default gin server
 	r := gin.Default()
 	gin.SetMode(gin.TestMode)
-	authMiddleware := middlewares.JWTMiddleware(DB,JWT_SECRET,false,false)
+	authMiddleware := middlewares.JWTMiddleware(DB, JWT_SECRET, false, false)
 
 	api := r.Group("/api/v1")
 	{
 		userController := controllers.User{
 			DB: DB,
 		}
-
-		api.POST("/user/register", userController.Register)
-
+		api.POST("/user/register", userController.RegisterEmployee)
+		api.POST("/user/register-admin", userController.RegisterAdmin)
 		api.POST("/user/login", authMiddleware.LoginHandler)
 
 	}
@@ -65,61 +66,61 @@ func SetupRouter(DB *gorm.DB) *gin.Engine {
 
 /**
 * TestRegister
-*/
+ */
 func TestRegister(t *testing.T) {
 
 	testRouter := SetupRouter(DB)
-		//create user first
+	//create user first
 	idealCase := models.User{
 		FirstName: "registerfirstname",
 		LastName:  "registerlastname",
 		Email:     "register@test.com",
-		Password:  "registerPassword123$",		
+		Password:  "registerPassword123$",
 	}
 
-	testCases := []struct{
-		input          models.User
+	testCases := []struct {
+		input    models.User
 		expected int
-	  }{
+	}{
 		//missing email
 		{
-		  input: models.User{
-						FirstName: idealCase.FirstName,
-						LastName:  idealCase.LastName,
-						Password:  idealCase.Password,
-		  },
-		  expected: http.StatusUnprocessableEntity,
+			input: models.User{
+				FirstName: idealCase.FirstName,
+				LastName:  idealCase.LastName,
+				Password:  idealCase.Password,
+			},
+			expected: http.StatusUnprocessableEntity,
 		},
 		//missing password
 		{
 			input: models.User{
-						FirstName: idealCase.FirstName,
-						LastName:  idealCase.LastName,
-						Email:     idealCase.Email,
+				FirstName: idealCase.FirstName,
+				LastName:  idealCase.LastName,
+				Email:     idealCase.Email,
 			},
 			expected: http.StatusUnprocessableEntity,
 		},
 		//missing firstname or lastname
 		{
 			input: models.User{
-						LastName:  idealCase.LastName,
-						Email:     idealCase.Email,
-						Password:  idealCase.Password,
+				LastName: idealCase.LastName,
+				Email:    idealCase.Email,
+				Password: idealCase.Password,
 			},
 			expected: http.StatusUnprocessableEntity,
 		},
 		//completely filled out
 		{
 			input: models.User{
-						  FirstName: idealCase.FirstName,
-						  LastName:  idealCase.LastName,
-						  Email:     idealCase.Email,
-						  Password:  idealCase.Password,
+				FirstName: idealCase.FirstName,
+				LastName:  idealCase.LastName,
+				Email:     idealCase.Email,
+				Password:  idealCase.Password,
 			},
 			expected: http.StatusOK,
 		},
 	}
-   for _, testCase := range testCases {
+	for _, testCase := range testCases {
 
 		data, _ := json.Marshal(testCase.input)
 
@@ -134,78 +135,74 @@ func TestRegister(t *testing.T) {
 
 		testRouter.ServeHTTP(resp, req)
 		assert.Equal(t, testCase.expected, resp.Code)
-   }
+	}
 }
 
 func TestRegisterAdmin(t *testing.T) {
 
 	testRouter := SetupRouter(DB)
-		//create user first
+	//create user first
 	idealCase := models.User{
 		FirstName: "registerfirstname",
 		LastName:  "registerlastname",
 		Email:     "register@test.com",
-		Password:  "registerPassword123$",		
-		Role:      models.Role{UserRole: "Employee"},
+		Password:  "registerPassword123$",
+		Role:      models.ADMIN_ROLE,
 	}
 
-	testCases := []struct{
-		input          models.User
+	testCases := []struct {
+		input    models.User
 		expected int
-	  }{
+	}{
 		//missing email
 		{
-		  input: models.User{
-						FirstName: idealCase.FirstName,
-						LastName:  idealCase.LastName,
-						Password:  idealCase.Password,
-						Role:  	   models.Role{UserRole: idealCase.UserRole},
-		  },
-		  expected: http.StatusUnprocessableEntity,
+			input: models.User{
+				FirstName: idealCase.FirstName,
+				LastName:  idealCase.LastName,
+				Password:  idealCase.Password,
+			},
+			expected: http.StatusUnprocessableEntity,
 		},
 		//missing password
 		{
 			input: models.User{
-						FirstName: idealCase.FirstName,
-						LastName:  idealCase.LastName,
-						Email:     idealCase.Email,
-						Role:	   models.Role{UserRole: idealCase.UserRole},
+				FirstName: idealCase.FirstName,
+				LastName:  idealCase.LastName,
+				Email:     idealCase.Email,
 			},
 			expected: http.StatusUnprocessableEntity,
 		},
 		//missing firstname or lastname
 		{
 			input: models.User{
-						LastName:  idealCase.LastName,
-						Email:     idealCase.Email,
-						Password:  idealCase.Password,
-						Role: 	   models.Role{UserRole: idealCase.UserRole},
-			},
-			expected: http.StatusUnprocessableEntity,
-		},
-		//missing role
-		{
-			input: models.User{
-						FirstName: idealCase.FirstName,
-						LastName:  idealCase.LastName,
-						Email:     idealCase.Email,
-						Password:  idealCase.Password,
+				LastName: idealCase.LastName,
+				Email:    idealCase.Email,
+				Password: idealCase.Password,
 			},
 			expected: http.StatusUnprocessableEntity,
 		},
 		//completely filled out
 		{
 			input: models.User{
-						FirstName: idealCase.FirstName,
-						LastName:  idealCase.LastName,
-						Email:     idealCase.Email,
-						Password:  idealCase.Password,
-						Role: 	 models.Role{UserRole: idealCase.UserRole},
+				FirstName: idealCase.FirstName,
+				LastName:  idealCase.LastName,
+				Email:     idealCase.Email,
+				Password:  idealCase.Password,
 			},
 			expected: http.StatusOK,
 		},
+		//attempt to create another admin
+		{
+			input: models.User{
+				FirstName: idealCase.FirstName,
+				LastName:  idealCase.LastName,
+				Email:     idealCase.Email,
+				Password:  idealCase.Password,
+			},
+			expected: http.StatusUnprocessableEntity,
+		},
 	}
-   for _, testCase := range testCases {
+	for _, testCase := range testCases {
 
 		data, _ := json.Marshal(testCase.input)
 
@@ -220,7 +217,7 @@ func TestRegisterAdmin(t *testing.T) {
 
 		testRouter.ServeHTTP(resp, req)
 		assert.Equal(t, testCase.expected, resp.Code)
-   }
+	}
 }
 
 func TestLogin(t *testing.T) {
@@ -232,7 +229,7 @@ func TestLogin(t *testing.T) {
 		FirstName: "loginfirstname",
 		LastName:  "loginlastname",
 		Email:     "login@test.com",
-		Password:  "loginPassword123$",		
+		Password:  "loginPassword123$",
 	}
 	data, _ := json.Marshal(idealCase)
 
@@ -246,50 +243,50 @@ func TestLogin(t *testing.T) {
 	testRouter.ServeHTTP(resp, req)
 	assert.Equal(t, http.StatusOK, resp.Code)
 
-	testCases := []struct{
-		input          models.User
+	testCases := []struct {
+		input    models.User
 		expected int
-	  }{
+	}{
 		//missing email
 		{
-		  input: models.User{
-						Password:  idealCase.Password,
-		  },
-		  expected: http.StatusUnauthorized,
+			input: models.User{
+				Password: idealCase.Password,
+			},
+			expected: http.StatusUnauthorized,
 		},
 		//missing password
 		{
 			input: models.User{
-						  Email:     idealCase.Email,
+				Email: idealCase.Email,
 			},
 			expected: http.StatusUnauthorized,
 		},
 		//non existing email
 		{
 			input: models.User{
-						  Email:     "wrong@test.com",
-						  Password:  idealCase.Password,
+				Email:    "wrong@test.com",
+				Password: idealCase.Password,
 			},
 			expected: http.StatusUnauthorized,
 		},
 		//wrong password
 		{
 			input: models.User{
-						  Email:     idealCase.Email,
-						  Password:  "wrongpassword",
+				Email:    idealCase.Email,
+				Password: "wrongpassword",
 			},
 			expected: http.StatusUnauthorized,
 		},
 		//completely filled out
 		{
 			input: models.User{
-						  Email:     idealCase.Email,
-						  Password:  idealCase.Password,
+				Email:    idealCase.Email,
+				Password: idealCase.Password,
 			},
 			expected: http.StatusOK,
 		},
 	}
-   for _, testCase := range testCases {
+	for _, testCase := range testCases {
 
 		data, _ := json.Marshal(testCase.input)
 
@@ -304,11 +301,11 @@ func TestLogin(t *testing.T) {
 
 		testRouter.ServeHTTP(resp, req)
 		assert.Equal(t, testCase.expected, resp.Code)
-   }
+	}
 }
 
 func TestRefresh(t *testing.T) {
-    var loginResult LoginResult
+	var loginResult LoginResult
 	testRouter := SetupRouter(DB)
 
 	//create user first
@@ -316,7 +313,7 @@ func TestRefresh(t *testing.T) {
 		FirstName: "refreshfirstname",
 		LastName:  "refreshlastname",
 		Email:     "refresh@test.com",
-		Password:  "refreshPassword123$",		
+		Password:  "refreshPassword123$",
 	}
 
 	//Register
@@ -341,7 +338,7 @@ func TestRefresh(t *testing.T) {
 	resp = httptest.NewRecorder()
 	testRouter.ServeHTTP(resp, req)
 	b, _ := ioutil.ReadAll(resp.Body)
-	if err = json.Unmarshal(b,&loginResult); err != nil {
+	if err = json.Unmarshal(b, &loginResult); err != nil {
 		log.Error(err)
 	}
 	log.Println(loginResult)
@@ -350,7 +347,7 @@ func TestRefresh(t *testing.T) {
 	//refresh
 	req, err = http.NewRequest("POST", "/api/auth/refresh_token", bytes.NewBufferString(string(data)))
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Add("Authorization", "Bearer " + loginResult.Token)
+	req.Header.Add("Authorization", "Bearer "+loginResult.Token)
 
 	if err != nil {
 		log.Fatalln(err)
@@ -359,6 +356,3 @@ func TestRefresh(t *testing.T) {
 	testRouter.ServeHTTP(resp, req)
 	assert.Equal(t, http.StatusOK, resp.Code)
 }
-
-
-

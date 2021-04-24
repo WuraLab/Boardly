@@ -4,9 +4,14 @@ import (
 	"gorm.io/gorm"
 )
 
+const (
+	DEFAULT_ROLE = "employee"
+	ADMIN_ROLE   = "admin"
+)
+
 type Role struct {
 	Base
-	UserRole  string `gorm:"column:role;type:varchar(255)"  json:"role" binding:""`
+	Name string `gorm:"column:role;type:varchar(255)"  json:"role" binding:""`
 }
 
 //Create this create the Role struct
