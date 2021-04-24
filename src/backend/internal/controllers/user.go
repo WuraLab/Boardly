@@ -58,19 +58,19 @@ func (ctrl *User) Registration(c *gin.Context) error {
 //Register ...
 func (ctrl *User) RegisterEmployee(c *gin.Context) {
 	ctrl.Role = models.DEFAULT_ROLE
-	ctrl.Registration(c)
+	_ = ctrl.Registration(c)
 }
 
 func (ctrl *User) RegisterAdmin(c *gin.Context) {
-	//check if a User is empty
-	err := ctrl.DB.First(&models.User{}, 1).Error
-	if errors.Is(err, gorm.ErrRecordNotFound) == false {
+	//check if a Admin has lrwady been created
+	err := ctrl.DB.Where("role = ?", "admin").First(&models.User{}).Error
+	if !errors.Is(err, gorm.ErrRecordNotFound) {
 		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "Admin has already been created"})
 		return
 	}
 
 	ctrl.Role = models.ADMIN_ROLE
-	ctrl.Registration(c)
+	_ = ctrl.Registration(c)
 }
 
 // //Register admin user...
