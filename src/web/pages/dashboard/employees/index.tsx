@@ -27,6 +27,7 @@ import Overview from '../../../public/overview.svg';
 import Employees from '../../../public/employees.svg';
 import Integrations from '../../../public/integrations.svg';
 import DashboardLogo from '../../../public/dashboardLogo.svg';
+import Link from 'next/link';
 
 const drawerWidth = 240;
 
@@ -369,43 +370,52 @@ export default function Main() {
                 </div>
                 <Divider />
                 <List>
-                    <ListItem
-                        button
-                        classes={{ root: classes.listItem, selected: classes.selected }}
-                        selected={selectedSidebarItem}
-                        onClick={() => handleSideBarNaviagtion('Overview')}>
-                        <ListItemIcon className={classes.icon}>
-                            <img alt={'Overview'} src={Overview} />
-                        </ListItemIcon>
-                        <ListItemText primary={'Overview'} />
-                    </ListItem>
-                    <ListItem
-                        button
-                        classes={{ root: classes.listItem, selected: classes.selected }}
-                        // selected={selectedSidebarItem}
-                        onClick={() => handleSideBarNaviagtion('Employees')}>
-                        <ListItemIcon className={classes.icon}>
-                            <img alt={'Employees'} src={Employees} />
-                        </ListItemIcon>
-                        <ListItemText primary={'Employees'} />
-                    </ListItem>
-                    <ListItem
-                        button
-                        classes={{ root: classes.listItem, selected: classes.selected }}
-                        // selected={selectedSidebarItem}
-                        onClick={() => handleSideBarNaviagtion('Integration')}>
-                        <ListItemIcon className={classes.icon}>
-                            <img alt={'Integration'} src={Integrations} />
-                        </ListItemIcon>
-                        <ListItemText primary={'Integration'} />
-                    </ListItem>
+                    <Link href="/dashboard/overview">
+                        <ListItem
+                            button
+                            classes={{ root: classes.listItem, selected: classes.selected }}
+                            selected={selectedSidebarItem}
+                            onClick={() => handleSideBarNaviagtion('Overview')}>
+                            <ListItemIcon className={classes.icon}>
+                                <img alt={'Overview'} src={Overview} />
+                            </ListItemIcon>
+                            <ListItemText primary={'Overview'} />
+                        </ListItem>
+                    </Link>
+
+                    <Link href="/dashboard/employees">
+                        <ListItem
+                            button
+                            classes={{ root: classes.listItem, selected: classes.selected }}
+                            // selected={selectedSidebarItem}
+                            onClick={() => handleSideBarNaviagtion('Employees')}>
+                            <ListItemIcon className={classes.icon}>
+                                <img alt={'Employees'} src={Employees} />
+                            </ListItemIcon>
+                            <ListItemText primary={'Employees'} />
+                        </ListItem>
+                    </Link>
+
+                    <Link href="/dashboard/integration">
+                        <ListItem
+                            button
+                            classes={{ root: classes.listItem, selected: classes.selected }}
+                            // selected={selectedSidebarItem}
+                            onClick={() => handleSideBarNaviagtion('Integration')}>
+                            <ListItemIcon className={classes.icon}>
+                                <img alt={'Integration'} src={Integrations} />
+                            </ListItemIcon>
+                            <ListItemText primary={'Integration'} />
+                        </ListItem>
+                    </Link>
                 </List>
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                {/* <Typography variant="h6" noWrap className={classes.title}> */}
-                {/* {dashboardTitle} */}
-                {/* </Typography> */}
+                <Typography variant="h6" noWrap className={classes.title}>
+                    {/* {dashboardTitle} */}
+                    Main
+                </Typography>
             </main>
         </div>
     );
