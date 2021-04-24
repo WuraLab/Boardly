@@ -9,6 +9,7 @@ import (
 type Config struct {
 	Server   Server   `mapstructure:",squash"`
 	Database Database `mapstructure:",squash"`
+	Casbin   Casbin   `mapstructure:",squash"`
 }
 
 type Database struct {
@@ -25,6 +26,11 @@ type Server struct {
 	SSL  string `mapstructure:"SSL"`
 	ENV  string `mapstructure:"ENV"`
 	JWT  string `mapstructure:"JWT_SECRET"`
+}
+
+type Casbin struct {
+	Model  string `mapstructure:"CASBIN_MODEL"`
+	Policy string `mapstructure:"CASBIN_POLICY"`
 }
 
 func LoadConfig(configFile string, paths ...string) (Config, error) {

@@ -3,9 +3,9 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/wuraLab/boardly/src/backend/internal/errors"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
+	"github.com/wuraLab/boardly/src/backend/internal/errors"
 	"github.com/wuraLab/boardly/src/backend/internal/models"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -13,46 +13,68 @@ import (
 
 //User  Controller
 type User struct {
-    DB *gorm.DB
+	DB   *gorm.DB
+	Role string
 }
 
 //Register ...
-func (ctrl *User) Register(c *gin.Context) {
+func (ctrl *User) Registration(c *gin.Context) error {
 	user := models.User{}
 
 	err := c.ShouldBindJSON(&user)
 	if err != nil {
 		log.Error(err)
 	}
-    //check if there is a binding error or empty firstname or lastname
-	if err != nil || len(user.FirstName) == 0 || len(user.LastName) == 0{
-		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "All fields are required"})
-		return	
+	//check if there is a binding error or empty firstname or lastname
+	if err != nil || len(user.FirstName) == 0 || len(user.LastName) == 0 {
+		errMsg := "All fields are required"
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": errMsg})
+		return errors.NewBadRequest(errMsg)
 	}
 	hashPassword, err := HashPassword(user.Password)
 	if err != nil {
 		log.Error(err)
 		c.JSON(http.StatusInternalServerError, gin.H{})
-		return
+		return err
 	}
 	user.Password = hashPassword
+	//assign default role
+	user.Role = ctrl.Role
 	rows, err := user.Create(ctrl.DB)
 
 	if err != nil && rows > 0 {
 		log.Error(err)
 		c.JSON(http.StatusConflict, gin.H{"message": "User already exists"})
-
 	} else if err == nil && rows == 1 {
 		c.JSON(http.StatusOK, gin.H{"message": "Successfully registered"})
+		return nil
 	} else {
 		log.Error(err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 	}
+	return err
+}
 
+//Register ...
+func (ctrl *User) RegisterEmployee(c *gin.Context) {
+	ctrl.Role = models.DEFAULT_ROLE
+	_ = ctrl.Registration(c)
+}
+
+func (ctrl *User) RegisterAdmin(c *gin.Context) {
+	//check if a Admin has lrwady been created
+	err := ctrl.DB.Where("role = ?", "admin").First(&models.User{}).Error
+	if !errors.Is(err, gorm.ErrRecordNotFound) {
+		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "Admin has already been created"})
+		return
+	}
+
+	ctrl.Role = models.ADMIN_ROLE
+	_ = ctrl.Registration(c)
 }
 
 //Login ...
-func (ctrl *User) Login(c *gin.Context) (*models.User,error){
+func (ctrl *User) Login(c *gin.Context) (*models.User, error) {
 	var errMsg string
 	user := models.User{}
 
@@ -71,7 +93,7 @@ func (ctrl *User) Login(c *gin.Context) (*models.User,error){
 	if !CheckPasswordHash(user.Password, storedCreds.Password) {
 		errMsg = "Invalid username or password"
 		// c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"message": errMsg})
-		return nil,errors.NewBadRequest(errMsg)
+		return nil, errors.NewBadRequest(errMsg)
 	}
 	// c.JSON(http.StatusOK, gin.H{"message": "Successfully Logged In"})
 	return storedCreds, nil
