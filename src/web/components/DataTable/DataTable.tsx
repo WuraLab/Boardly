@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable react/display-name */
 import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
@@ -51,6 +52,7 @@ type User = {
     password: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const getStaticProps = async () => {
     const res = await fetch('https://.../posts');
     const users: User[] = await res.json();

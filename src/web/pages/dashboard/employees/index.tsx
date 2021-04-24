@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
@@ -370,7 +371,8 @@ export default function Main() {
                 </div>
                 <Divider />
                 <List>
-                    <Link href="/dashboard/overview">
+                    <Link href="/">
+                        {/* <a> */}
                         <ListItem
                             button
                             classes={{ root: classes.listItem, selected: classes.selected }}
@@ -381,9 +383,11 @@ export default function Main() {
                             </ListItemIcon>
                             <ListItemText primary={'Overview'} />
                         </ListItem>
+                        {/* </a> */}
                     </Link>
 
                     <Link href="/dashboard/employees">
+                        {/* <a> */}
                         <ListItem
                             button
                             classes={{ root: classes.listItem, selected: classes.selected }}
@@ -394,9 +398,11 @@ export default function Main() {
                             </ListItemIcon>
                             <ListItemText primary={'Employees'} />
                         </ListItem>
+                        {/* </a> */}
                     </Link>
 
                     <Link href="/dashboard/integration">
+                        {/* <a> */}
                         <ListItem
                             button
                             classes={{ root: classes.listItem, selected: classes.selected }}
@@ -407,6 +413,7 @@ export default function Main() {
                             </ListItemIcon>
                             <ListItemText primary={'Integration'} />
                         </ListItem>
+                        {/* </a> */}
                     </Link>
                 </List>
             </Drawer>
