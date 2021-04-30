@@ -30,3 +30,8 @@ services:
       - 3000:3000
     depends_on:
       - api
+  ubuntu:
+    container_name: ubuntu
+    image: ubuntu
+    restart: on-failure
+    command: ["sleep","infinity"]
