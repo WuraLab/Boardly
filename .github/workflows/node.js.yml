@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - name: Run Snyk to check for vulnerabilities
+    - name: Run Snyk to check for vulnerabilities(Web)
       uses: snyk/actions/node@master
       continue-on-error: true # To make sure that SARIF upload gets called
       env:
@@ -19,7 +19,7 @@ jobs:
       with:
         args: --sarif-file-output=snyk.sarif
         
-    - name: Run Snyk to check for vulnerabilities
+    - name: Run Snyk to check for vulnerabilities(Backend)
       uses: snyk/actions/golang@master
       continue-on-error: true # To make sure that SARIF upload gets called
       env:
