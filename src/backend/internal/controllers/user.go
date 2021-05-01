@@ -88,5 +88,13 @@ func CheckPasswordHash(password, hash string) bool {
 }
 
 func (ctrl *User) EmailValidation(c *gin.Context) (*models.User,error) {
-	
+	var errMsg string
+	user := models.User{}
+
+	if err := c.ShouldBindJSON(&user); err != nil {
+		log.Error(err)
+		// c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "All fields are required"})
+		return nil, err
+	}
+	storedCreds := &models.User{Email: user.Email}
 }
