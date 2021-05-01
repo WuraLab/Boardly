@@ -1,4 +1,4 @@
-name: vulnerability scan
+name: Vulnerability Scan
 on:
   pull_request:
     branches: [ master ]
