@@ -53,7 +53,7 @@ func main() {
 	}
 	//connect the DB
 	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s  sslmode=disable", Config.Database.Host, Config.Database.Port, Config.Database.User, Config.Database.Password, Config.Database.DBName)
-	if DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{net
+	if DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Silent),
 	}); err != nil {
 		log.Fatalln(err)
