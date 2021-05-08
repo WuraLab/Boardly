@@ -71,6 +71,14 @@ func JWTMiddleware(DB *gorm.DB,secret string, secureCookie bool, httpOnly bool) 
 					"expire": expire.Format(time.RFC3339),
 				})
 			},
+			RefreshResponse: func(c *gin.Context, code int, token string, expire time.Time) {
+				c.JSON(http.StatusOK, gin.H{
+					"status":   http.StatusOK,
+					"message": "Token refreshed"
+					"token":  token,
+					"expire": expire.Format(time.RFC3339),
+				})
+			}
 			SendCookie: true,
 			SecureCookie: secureCookie,
 			CookieHTTPOnly: httpOnly,
