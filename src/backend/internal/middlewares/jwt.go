@@ -4,7 +4,7 @@ import (
 	"github.com/wuraLab/boardly/src/backend/internal/errors"
 	log "github.com/sirupsen/logrus"
 	"time"
-
+	"net/http"
 	"github.com/wuraLab/boardly/src/backend/internal/controllers"
 	"github.com/wuraLab/boardly/src/backend/internal/models"
 	jwt "github.com/appleboy/gin-jwt/v2"
@@ -59,8 +59,16 @@ func JWTMiddleware(DB *gorm.DB,secret string, secureCookie bool, httpOnly bool) 
 			Unauthorized: func(c *gin.Context, code int, message string) {
 				log.Error(errors.NewBadRequest(message))
 				c.JSON(code, gin.H{
-					"code":    code,
+					"status":    code,
 					"message": message,
+				})
+			},
+			LoginResponse: func(c *gin.Context, code int, token string, expire time.Time) {
+				c.JSON(http.StatusOK, gin.H{
+					"status":   http.StatusOK,
+					"message": "Logged in successfully"
+					"token":  token,
+					"expire": expire.Format(time.RFC3339),
 				})
 			},
 			SendCookie: true,
