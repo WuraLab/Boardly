@@ -35,7 +35,7 @@ const EmployeeSignup = () => {
                                 Fill out the following information to create an Employee account
                             </Typography>
                             <br />
-                            <FormInput name="Company's Email" placeholder="contact@wuralab.com">
+                            <FormInput name="Employee's Email" placeholder="empoyee@wuralab.com">
                                 {' '}
                             </FormInput>
                             <FormInputPassword name="Password" placeholder="Password">
