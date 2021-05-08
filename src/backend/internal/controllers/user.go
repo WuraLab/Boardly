@@ -26,13 +26,23 @@ func (ctrl *User) Register(c *gin.Context) {
 	}
     //check if there is a binding error or empty firstname or lastname
 	if err != nil || len(user.FirstName) == 0 || len(user.LastName) == 0{
-		c.AbortWithStatusJSON(http.StatusUnprocessableEntity, gin.H{"message": "All fields are required"})
+		c.AbortWithStatusJSON(
+			http.StatusUnprocessableEntity, 
+			gin.H{
+				"status": http.StatusUnprocessableEntity,
+				"message": "All fields are required",
+			})
 		return	
 	}
 	hashPassword, err := HashPassword(user.Password)
 	if err != nil {
 		log.Error(err)
-		c.JSON(http.StatusInternalServerError, gin.H{})
+		c.JSON(
+			http.StatusInternalServerError, 
+			gin.H{
+				"status": http.StatusInternalServerError,
+				"message": "Something went wrong",
+			})
 		return
 	}
 	user.Password = hashPassword
@@ -40,13 +50,23 @@ func (ctrl *User) Register(c *gin.Context) {
 
 	if err != nil && rows > 0 {
 		log.Error(err)
-		c.JSON(http.StatusConflict, gin.H{"message": "User already exists"})
+		c.JSON(
+			http.StatusConflict, 
+			gin.H{
+				"status": http.StatusConflict,
+				"message": "User already exists",
+			})
 
 	} else if err == nil && rows == 1 {
 		c.JSON(http.StatusOK, gin.H{"message": "Successfully registered"})
 	} else {
 		log.Error(err)
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
+		c.AbortWithStatusJSON(
+			http.StatusInternalServerError, 
+			gin.H{
+				"status": http.StatusInternalServerError,
+				"message": err.Error(),
+			})
 	}
 
 }
