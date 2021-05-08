@@ -1,4 +1,4 @@
-version: '3.1'
+version: "3.1"
 
 services:
   db:
@@ -12,7 +12,7 @@ services:
       POSTGRES_DB: "$DB_NAME"
   api:
     restart: always
-    build: 
+    build:
       context: .
       dockerfile: src/backend/Dockerfile
     volumes:
@@ -23,7 +23,7 @@ services:
       - db
   web:
     restart: always
-    build: 
+    build:
       context: .
       dockerfile: src/web/Dockerfile
     ports:
