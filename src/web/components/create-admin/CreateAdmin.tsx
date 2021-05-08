@@ -47,7 +47,7 @@ const CreateAdmin = () => {
                             <FormInputPassword
                                 name="Confirm Password"
                                 placeholder="confirm-password">
-                                {' '}
+                                {'hello '}
                             </FormInputPassword>
                             <br />
                             <Button
