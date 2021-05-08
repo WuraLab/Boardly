@@ -66,7 +66,7 @@ func JWTMiddleware(DB *gorm.DB,secret string, secureCookie bool, httpOnly bool) 
 			LoginResponse: func(c *gin.Context, code int, token string, expire time.Time) {
 				c.JSON(http.StatusOK, gin.H{
 					"status":   http.StatusOK,
-					"message": "Logged in successfully"
+					"message": "Logged in successfully",
 					"token":  token,
 					"expire": expire.Format(time.RFC3339),
 				})
@@ -74,7 +74,7 @@ func JWTMiddleware(DB *gorm.DB,secret string, secureCookie bool, httpOnly bool) 
 			RefreshResponse: func(c *gin.Context, code int, token string, expire time.Time) {
 				c.JSON(http.StatusOK, gin.H{
 					"status":   http.StatusOK,
-					"message": "Token refreshed"
+					"message": "Token refreshed",
 					"token":  token,
 					"expire": expire.Format(time.RFC3339),
 				})
@@ -82,9 +82,9 @@ func JWTMiddleware(DB *gorm.DB,secret string, secureCookie bool, httpOnly bool) 
 			LogoutResponse: func(c *gin.Context, code int) {
 				c.JSON(http.StatusOK, gin.H{
 					"status": http.StatusOK,
-					"message": "Logged out successfully"
+					"message": "Logged out successfully",
 				})
-			}
+			},
 			SendCookie: true,
 			SecureCookie: secureCookie,
 			CookieHTTPOnly: httpOnly,
