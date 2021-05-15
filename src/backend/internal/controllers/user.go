@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/wuraLab/boardly/src/backend/internal/errors"
+	"github.com/wuraLab/boardly/src/backend/internal/common"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 	"github.com/wuraLab/boardly/src/backend/internal/models"
@@ -62,6 +63,7 @@ func (ctrl *User) Login(c *gin.Context) (*models.User,error){
 		return nil, err
 	}
 	//check if user exists
+	// Create memory address for each user
 	storedCreds := &models.User{Email: user.Email}
 	if !storedCreds.Exists(ctrl.DB) {
 		errMsg = "Invalid username or password"
@@ -77,16 +79,6 @@ func (ctrl *User) Login(c *gin.Context) (*models.User,error){
 	return storedCreds, nil
 }
 
-func HashPassword(password string) (string, error) {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
-	return string(bytes), err
-}
-
-func CheckPasswordHash(password, hash string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-	return err == nil
-}
-
 func (ctrl *User) EmailValidation(c *gin.Context) (*models.User,error) {
 	var errMsg string
 	user := models.User{}
@@ -97,4 +89,22 @@ func (ctrl *User) EmailValidation(c *gin.Context) (*models.User,error) {
 		return nil, err
 	}
 	storedCreds := &models.User{Email: user.Email}
+	
+	user_id := storedCreds.id
+	// call JWT token
+	token := jwt.CreateToken(user_id)
+	subject := "Email Verification"
+	email.SendMail(subject, user.Email, token)
+
+}
+
+
+func HashPassword(password string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	return string(bytes), err
+}
+
+func CheckPasswordHash(password, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
 }
