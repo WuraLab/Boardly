@@ -22,7 +22,14 @@ export const FormInput = (props) => {
             <InputLabel shrink htmlFor="bootstrap-input" className={classes.input}>
                 {props.name}
             </InputLabel>
-            <BootstrapInput id="bootstrap-input" placeholder={props.placeholder} />
+            <BootstrapInput
+                id="bootstrap-input"
+                name={props.name}
+                placeholder={props.placeholder}
+                onChange={(event) => {
+                    console.log(event.target.value);
+                }}
+            />
         </FormControl>
     );
 };

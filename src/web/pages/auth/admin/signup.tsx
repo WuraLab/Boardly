@@ -1,10 +1,10 @@
 import React from 'react';
-import CreateAdmin from '../../components/create-admin/CreateAdmin';
+import CreateAdmin from '../../../components/create-admin/CreateAdmin';
 
 // export const ForgotPasswordView: React.FC = () => {
 // export default function ForgotPasswordView() {
 
-const CreateAdminView: React.FC = () => {
+const SignUp: React.FC = () => {
     return (
         // <Layout>
         <>
@@ -15,4 +15,4 @@ const CreateAdminView: React.FC = () => {
     );
 };
 
-export default CreateAdminView;
+export default SignUp;

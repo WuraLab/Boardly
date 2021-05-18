@@ -32,9 +32,15 @@ const CreateAdmin = () => {
                                 Create Admin Account
                             </Typography>
                             <Typography style={{ color: '#867979' }}>
-                                Fill out the folowing information to create an admin account
+                                Fill out the following information to create an admin account
                             </Typography>
                             <br />
+                            <FormInput name="First Name" placeholder="John">
+                                {' '}
+                            </FormInput>
+                            <FormInput name="Last Name" placeholder="Doo">
+                                {' '}
+                            </FormInput>
                             <FormInput name="Company's Name" placeholder="Wuralab">
                                 {' '}
                             </FormInput>
@@ -47,7 +53,7 @@ const CreateAdmin = () => {
                             <FormInputPassword
                                 name="Confirm Password"
                                 placeholder="confirm-password">
-                                {' '}
+                                {'hello '}
                             </FormInputPassword>
                             <br />
                             <Button
