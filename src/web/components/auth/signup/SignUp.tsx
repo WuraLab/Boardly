@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { Container, Button, Typography } from '@material-ui/core';
 import '@fontsource/poppins';
-import { FormInput, FormInputPassword } from '../create-admin/FormInput';
+import { FormInput, FormInputPassword } from '../../create-admin/FormInput';
 
 const EmployeeSignup = () => {
     return (
