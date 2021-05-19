@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable react/display-name */
-import React, { useEffect, useState, Type } from 'react';
+import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
 // import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { forwardRef } from 'react';
 
 import AddBox from '@material-ui/icons/AddBox';
-import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
