@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable react/display-name */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Type } from 'react';
 import MaterialTable from 'material-table';
 // import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { forwardRef } from 'react';
@@ -22,10 +22,11 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 // import image from '../../public/logo.svg';
 // import { InferGetStaticPropsType } from 'next';
+import { Icons } from 'material-table';
 
 // const useStyles = makeStyles((theme: Theme) => createStyles({}));
 
-const tableIcons = {
+const tableIcons: Icons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
     Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
@@ -40,11 +41,10 @@ const tableIcons = {
     PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
     ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
     Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+    SortArrow: forwardRef((props, ref) => <ArrowUpward {...props} ref={ref} />),
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
-
 type User = {
     user_id: string;
     email: string;
