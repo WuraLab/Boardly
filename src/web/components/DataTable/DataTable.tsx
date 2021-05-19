@@ -45,28 +45,29 @@ const tableIcons: Icons = {
     ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
-type User = {
-    user_id: string;
-    email: string;
-    user_name: string;
-    password: string;
-};
+// type User = {
+//     user_id?: string;
+//     email?: string;
+//     user_name?: string;
+//     password?: string;
+// };
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const getStaticProps = async () => {
-    const res = await fetch('https://.../posts');
-    const users: User[] = await res.json();
+// // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+// export const getStaticProps = async () => {
+//     const res = await fetch('https://.../posts');
+//     const users: User[] = await res.json();
 
-    return {
-        revalidate: 10, // revalidate this data , from the backend every 10 seconds
-        props: {
-            users
-        }
-    };
-};
+//     return {
+//         revalidate: 10, // revalidate this data , from the backend every 10 seconds
+//         props: {
+//             users
+//         }
+//     };
+// };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const DataTable: React.FC<{ users: User[] }> = (props) => {
+// export const DataTable: React.FC<{ users: User[] }> = (props) => {
+export const DataTable: React.FC = () => {
     // const { users } = props;
     const [dataStore, setDataStore] = useState([]);
     // const classes = useStyles();
