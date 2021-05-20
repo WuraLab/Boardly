@@ -1,5 +1,5 @@
 import React from 'react';
-import EmployeeSignup from '../../components/signup/SignUp';
+import EmployeeSignup from '../../components/auth/signup/SignUp';
 
 // export const ForgotPasswordView: React.FC = () => {
 // export default function ForgotPasswordView() {
