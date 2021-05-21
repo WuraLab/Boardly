@@ -52,24 +52,10 @@ const tableIcons: Icons = {
 //     password?: string;
 // };
 
-<<<<<<< HEAD
-type User = {
-    user_id: string;
-    email: string;
-    user_name: string;
-    password: string;
-};
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const getStaticProps = async () => {
-    const res = await fetch('https://.../posts');
-    const users: User[] = await res.json();
-=======
 // // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 // export const getStaticProps = async () => {
 //     const res = await fetch('https://.../posts');
 //     const users: User[] = await res.json();
->>>>>>> BRD-20-admin-dash-ui
 
 //     return {
 //         revalidate: 10, // revalidate this data , from the backend every 10 seconds
