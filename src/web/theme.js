@@ -15,5 +15,6 @@ export default createMuiTheme({
     typography: {
         fontFamily: 'Poppins',
         fontSize: 13
-    }
+    },
+    
 });

@@ -2,9 +2,9 @@ import React from 'react';
 // import { Button } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { FormControl, Grid, Typography, Box, Input } from '@material-ui/core';
-import RightBackground from '../../public/Group5.svg';
-import Forgot_password from '../../public/forgot_password.svg';
-import Logo from '../../public/logo.svg';
+import RightBackground from '../../../public/Group5.svg';
+import Forgot_password from '../../../public/forgot_password.svg';
+import Logo from '../../../public/logo.svg';
 import Button from '@material-ui/core/Button';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: '#FFFFFF',
             height: '100%'
         },
+
         leftGrid: {
             height: '100%',
             backgroundColor: '#FFFFFF',

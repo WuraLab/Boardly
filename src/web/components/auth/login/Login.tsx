@@ -4,9 +4,9 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { Container, Button, Typography } from '@material-ui/core';
 import '@fontsource/poppins';
-import { FormInput, FormInputPassword } from '../create-admin/FormInput';
+import { FormInput, FormInputPassword } from '../../login/FormInput';
 
-const EmployeeSignup = () => {
+const Login = () => {
     return (
         <Box padding={0} margin={0}>
             <Grid container spacing={0}>
@@ -21,7 +21,11 @@ const EmployeeSignup = () => {
                             display: 'flex',
                             margin: '50px 0 0 0'
                         }}>
-                        <Grid item container direction="column" alignItems="center">
+                        <Grid
+                            item
+                            container
+                            direction="column"
+                            style={{ width: '60%', margin: '0 auto' }}>
                             <Typography
                                 style={{
                                     color: '#000000',
@@ -29,37 +33,34 @@ const EmployeeSignup = () => {
                                     fontSize: '30px',
                                     letterSpacing: '4px'
                                 }}>
-                                Create Employee Account
+                                Sign in to Boardly
                             </Typography>
-                            <Typography style={{ color: '#867979' }}>
-                                Fill out the following information to create an Employee account
-                            </Typography>
+
                             <br />
-                            <FormInput name="Employee's Email" placeholder="empoyee@wuralab.com">
+
+                            <FormInput name="Company's Email" placeholder="contact@wuralab.com">
                                 {' '}
                             </FormInput>
                             <FormInputPassword name="Password" placeholder="Password">
                                 {' '}
                             </FormInputPassword>
-                            <FormInputPassword
-                                name="Confirm Password"
-                                placeholder="confirm-password">
-                                {' '}
-                            </FormInputPassword>
+                            <Typography color="primary">
+                                <a href="/create-admin">Forget Password</a>
+                            </Typography>
+
                             <br />
                             <Button
                                 variant="contained"
                                 style={{
                                     backgroundColor: '#22ad80',
-                                    color: '#ffffff',
-                                    width: '50vh'
+                                    color: '#ffffff'
                                 }}>
-                                Sign up
+                                Sign in
                             </Button>
                             <Typography color="primary">
-                                <a href="/login">
-                                    {' '}
-                                    Have an account? <span> Login </span>{' '}
+                                New here?
+                                <a href="/create-admin-view">
+                                    <span> Create an account </span>
                                 </a>
                             </Typography>
                         </Grid>
@@ -81,7 +82,7 @@ const EmployeeSignup = () => {
                                     top: '50%',
                                     transform: 'translate(10%, -50%)'
                                 }}>
-                                <img src="/welcome.png" alt="" />
+                                <img src="/admin-signup.png" alt="" />
                             </div>
                         </Container>
                     </Box>
@@ -91,4 +92,4 @@ const EmployeeSignup = () => {
     );
 };
 
-export default EmployeeSignup;
+export default Login;
