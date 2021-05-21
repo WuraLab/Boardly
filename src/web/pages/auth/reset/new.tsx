@@ -1,5 +1,6 @@
 import React from 'react';
-import { ForgotPassword } from '../../components/auth/forgotpassword/ForgotPassword';
+
+import { ResetPassword } from '../../../components/auth/resetpassword/ResetPassword';
 // import { Layout } from '../../components/layout/index';
 // export const ForgotPasswordView: React.FC = () => {
 // export default function ForgotPasswordView() {
@@ -7,7 +8,7 @@ import { ForgotPassword } from '../../components/auth/forgotpassword/ForgotPassw
 const ForgotPasswordView: React.FC = () => {
     return (
         <>
-            <ForgotPassword />
+            <ResetPassword />
         </>
     );
 };

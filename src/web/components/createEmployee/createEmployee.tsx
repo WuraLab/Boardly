@@ -69,9 +69,9 @@ export default function CreateEmployeeModal() {
                 }}>
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <div className={classes.root}>
+                        <div>
                             <Grid container spacing={3}>
-                                <Box className={classes.forgotPassHeader}>
+                                <Box>
                                     <p>Send Email Invite</p>
                                 </Box>
 

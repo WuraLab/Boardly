@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
@@ -172,6 +174,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export default function Main() {
     const classes = useStyles();
     const theme = useTheme();
@@ -189,6 +192,7 @@ export default function Main() {
 
     const [selectedSidebarItem, setSelectedSidebarItem] = React.useState(false);
 
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     const handleSideBarNaviagtion = (name: string) => {
         setDashboardTitle(name);
         setSelectedSidebarItem(!selectedSidebarItem);

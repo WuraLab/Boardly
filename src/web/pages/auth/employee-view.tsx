@@ -1,18 +1,18 @@
 import React from 'react';
-import CreateAdmin from '../../components/create-admin/CreateAdmin';
+import EmployeeSignup from '../../components/auth/signup/SignUp';
 
 // export const ForgotPasswordView: React.FC = () => {
 // export default function ForgotPasswordView() {
 
-const CreateAdminView: React.FC = () => {
+const Employee: React.FC = () => {
     return (
         // <Layout>
         <>
             {/* <GlobalStyles /> */}
-            <CreateAdmin />
+            <EmployeeSignup />
             {/* // </Layout> */}
         </>
     );
 };
 
-export default CreateAdminView;
+export default Employee;

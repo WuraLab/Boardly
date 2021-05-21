@@ -1,18 +1,18 @@
-version: '3.1'
+version: "3.1"
 
 services:
   db:
-    image: postgres
+    image: postgres:alpine
     restart: always
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: "$DB_USER"
+      PPOSTGRES_USER: "$DB_USER"
       POSTGRES_PASSWORD: "$DB_PASSWORD"
       POSTGRES_DB: "$DB_NAME"
   api:
     restart: always
-    build: 
+    build:
       context: .
       dockerfile: src/backend/Dockerfile
     volumes:
@@ -23,7 +23,7 @@ services:
       - db
   web:
     restart: always
-    build: 
+    build:
       context: .
       dockerfile: src/web/Dockerfile
     ports:
