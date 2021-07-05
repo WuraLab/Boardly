@@ -4,12 +4,13 @@ import (
 	"github.com/wuraLab/boardly/src/backend/internal/errors"
 	log "github.com/sirupsen/logrus"
 	"time"
-
+	"github.com/wuraLab/boardly/src/backend/internal/config"
 	"github.com/wuraLab/boardly/src/backend/internal/controllers"
 	"github.com/wuraLab/boardly/src/backend/internal/models"
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
+	"github.com/dgrijalva/jwt-go"
 )
 const (
 	identityKey = "ID"
